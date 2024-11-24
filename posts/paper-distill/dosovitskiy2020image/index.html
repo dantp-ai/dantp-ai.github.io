@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale</h3>
+            
+            <small class="text-muted">Published March 12, 2023</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Title</strong>:</td>
+          <td style="text-align: left">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Authors</strong>:</td>
+          <td style="text-align: left">Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, Jakob Uszkoreit, Neil Houlsby</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Link</strong>:</td>
+          <td style="text-align: left"><a href="https://arxiv.org/pdf/2010.11929.pdf">https://arxiv.org/pdf/2010.11929.pdf</a></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="overview">Overview</h4>
+<p>This week I took a closer look at the ViT paper which contains some interesting experiments on how learning in the Transformer model scales with increasing computer power and data <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>The paper experiments with applying the Transformer model to images, making as few changes as possible to the original architecture. The authors are interested in whether a Transformer can <em>learn</em> more computationally efficient inductive biases that might otherwise be designed into the network architecture itself. For example, convolutional neural networks (CNNs) are <em>by design</em> <a href="https://chriswolfvision.medium.com/what-is-translation-equivariance-and-why-do-we-use-convolutions-to-get-it-6f18139d4c59">translation and scale invariant</a>. This simply means that if, for example an object in an image is moved or scaled up, the same neurons in the network would fire whether the transformation was applied or not.</p>
+<h4 id="model">Model</h4>
+<p>The standard Transformer was originally applied in Natural Language Processing (NLP) to sequences of word tokens. In order to use the same architecture for images, they need to be tokenized as well. The authors use a simple technique: an image is split into a sequence of non-overlapping image patch embeddings, ordered from the top left corner of the image to the bottom right corner. Once the image is tokenized, it can be fed as an input sequence to a Transformer. To obtain the image patch embedding, we first flatten the image patch to a 1D vector and then multiply it by a weight matrix.</p>
+<p>In this paper, the authors used ViT primarily for image classification. To do this, an extra patch embedding is placed at the beginning of the sequence and its value is learned to predict the target class label of the image <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<p>It is important to note that although Transformers do not have translation and scale invariance baked into their architecture, nor do they start with an a priori spatial understanding of each patch relative to the others, they do exploit a particular kind of inductive bias, namely the order of the patches in the sequence, through the use of positional embeddings.</p>
+<p>The authors also experimented with a hybrid architecture, where the image patch embeddings are instead provided to the Transformer by convolutional layers <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. As the experiments showed, the hybrid model (a state-of-the-art CNN architecture) outperformed ViT for small models, but as more and more computation was done during pre-training, ViT outperformed the hybrid model. This somehow suggests that convolutions actually interfere with some parts of the Transformer architecture.</p>
+<h4 id="results">Results</h4>
+<p>In the experiments, the models were pre-trained on large datasets and fine-tuned on smaller datasets with higher resolution images. In order to reuse the pre-trained positional embeddings for ViT, which are necessarily fewer than those of the high-resolution image, the authors performed an interpolation on the existing positional embeddings. That is, the pre-trained positional embeddings were placed on the high-resolution image at the corresponding location of the patches, and missing positional embeddings were computed using bicubic interpolation between existing ones.</p>
+<p>In one experiment, after pre-training ViT on a large dataset and then fine-tuning it on smaller datasets, the model showed superiority in accuracy over the ResNet<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> on all the datasets. I am a little sceptical about the significance of these results, mainly because of the number of runs (three in this case) that were averaged over. But what was striking to me was that the fine-tuning was more than four times faster, assuming that they used the same number of TPUv3 cores for all models.</p>
+<p>In a second experiment, the authors trained the models on subsets of the large JFT-300M dataset of increasing size. For the smaller subsets, the ResNet models performed better, but as the data size increased, the ViT models started to perform better, while ResNet plateaued early. This seems to indicate that learning inductive biases directly from the data when there is plenty of it trumps careful engineering of inductive biases in the network architecture.</p>
+<p>Another interesting experiment showed that mean attention distance, measured in image space, increased in self-attention layers the deeper these layers were. In a way, this reflects a similar structure of abstraction in the layers as in CNNs, where it is well known that the first layers encode basic structures such as circles and edges, and deeper layers capture more complex hierarchical structures such as cars, ears, and mouths.</p>
+<h4 id="conclusion">Conclusion</h4>
+<ul>
+<li>Images have a nice structure that allows them to be represented simply as a sequence of tokens.</li>
+<li>Providing the learning algorithm with ways to infer its own inductive biases from large data sets is more economically advantageous than building inductive biases into the network architecture a priori.
+<ul>
+<li>Let the algorithm decide which inductive biases are useful (some of which might have been designed by an Artificial Neural Network (ANN) designer, if they had bothered).</li>
+<li>Engineered inductive biases may even interfere with the <em>learned</em> ones, thus degrading the performance of the algorithm.</li>
+</ul>
+</li>
+</ul>
+<h4 id="references">References</h4>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., &hellip; &amp; Houlsby, N. (2020). An image is worth 16x16 words: Transformers for image recognition at scale. arXiv preprint arXiv:2010.11929.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>The output from the last layer of the Transformer of this patch embedding is fed into a classification head (a MLP) that learns to predict the class label using for example the binary cross-entropy loss for single label classification.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Specifically, for each image patch, each input feature of the corresponding patch embedding is the result of one convolutional layer applied on the image patch.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>The authors use a modification of the ResNet to turn it into the best competitor for ViT. Namely, they used ResNet with Group Normalization instead of Batch Normalization, and used standardized convolutions.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software-Engineering on The Reinforced Path</title>
+    <link>https://dantp-ai.github.io/categories/software-engineering/</link>
+    <description>Recent content in Software-Engineering on The Reinforced Path</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2022-2024</copyright>
+    <lastBuildDate>Sat, 27 May 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dantp-ai.github.io/categories/software-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reinitializing the moments of the optimizer during learning (Jax)</title>
+      <link>https://dantp-ai.github.io/posts/software/reinit_moments_opt/</link>
+      <pubDate>Sat, 27 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://dantp-ai.github.io/posts/software/reinit_moments_opt/</guid>
+      <description>&lt;p&gt;Reinitializing the weights of a neural network has been shown to be effective for continual learning (cf. CBP algorithm &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;). In this short guide, I show how to update the moments of a momentum-based optimizer in Jax.&lt;/p&gt;&#xA;&lt;p&gt;Here I reinitialized &lt;em&gt;all&lt;/em&gt; components of the two moments, not just those corresponding to low utility hidden units, as CBP does.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s consider a simple regression problem with multivariate inputs in three dimensions and scalar targets. We minimize the squared error using &lt;em&gt;stochastic&lt;/em&gt; momentum-based gradient descent. Specifically, we use the well-established Adam optimizer to update the parameters of a linear layer, processing a single example at each time step, for a total of 1000 steps.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to set up a Python debugger in VS Code for pytest</title>
+      <link>https://dantp-ai.github.io/posts/software/howto_python_debugger_vscode_pytest/</link>
+      <pubDate>Sun, 14 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://dantp-ai.github.io/posts/software/howto_python_debugger_vscode_pytest/</guid>
+      <description>&lt;h3 id=&#34;running-and-debugging-a-test-module-with-pytest-using-vs-code&#34;&gt;Running and debugging a test module with pytest using VS Code&lt;/h3&gt;&#xA;&lt;p&gt;You may be wondering how to set up the Python debugger in VS Code to debug pytest tests. Let us assume that you have opened a Python project in VS Code. In the following post, I specify some shortcuts to access certain UI elements of VS Code. These keyboard shortcuts are for MacOS. You can easily find the counterparts for the other operating systems with a quick web search. Also, I am going to reference several UI elements of VS Code as defined in their official documentation, which you can access here: &lt;a href=&#34;https://code.visualstudio.com/docs/getstarted/userinterface&#34;&gt;https://code.visualstudio.com/docs/getstarted/userinterface&lt;/a&gt;. Let&amp;rsquo;s get started:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

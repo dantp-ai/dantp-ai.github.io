@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>Planning with expectation models</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">Planning with expectation models</h3>
+            
+            <small class="text-muted">Published November 3, 2023</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Title</strong>:</td>
+          <td style="text-align: left">Planning with expectation models</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Authors</strong>:</td>
+          <td style="text-align: left">Yi Wan, Zaheer Abbas, Adam White, Martha White, Richard S. Sutton</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Link</strong>:</td>
+          <td style="text-align: left"><a href="https://arxiv.org/pdf/1904.01191.pdf">https://arxiv.org/pdf/1904.01191.pdf</a></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="what">What</h4>
+<hr>
+<p>The papers demonstrates how to use expectation models in a sound way for
+planning in model-based reinforcement learning (MBRL), particularly in
+stochastic environments.</p>
+<p>One important insight is that planning with an expectation model is just
+as expressive as with a distribution model, provided that the state
+value function has a linear parameterization in the state feature
+function. However, the mapping of observation-to-state-feature function
+may still be non-linear.</p>
+<p>Furthermore, a strong argument is made for using non-linear instead of
+linear function approximation for the feature-vector and reward
+functions.</p>
+<p>Finally, a stable planning algorithm called Gradient Dyna is introduced.
+It draws inspiration from Gradient-TD off-policy policy evaluation
+algorithms, and it guarantees convergence for both linear and nonlinear
+expectation models. This is true even when using imperfect models for
+online learning.</p>
+<h4 id="why">Why</h4>
+<hr>
+<p>For MBRL there are many choices to be made for what type of model to use
+to predict the next feature-vector state and reward. Distribution and
+sample models are two options. But they can be very inefficient when
+state and action spaces are large, because either the distribution of
+next feature-vector states is intractable to model or it requires too
+many samples to approximate the environment transition dynamics
+reasonably well. Expectation models are instead compact and
+deterministic in their output.</p>
+<p>When using an expectation model, we need to estimate the expected next
+feature-vector state and expected next reward. Should this estimation be
+done linearly or non-linearly? The answer is non-linear. This is due to
+the fact that using model-free off-policy TD(0) with real data and data
+generated from the best linear model doesn&rsquo;t produce the same solution.
+However, if a non-linear model is used, both methods produce the same
+results.</p>
+<p>If you decide to use expectation models with non-linear function
+approximations, is TD(0) a suitable algorithm to use for planning with
+the model? It is widely known that model-free TD(0) is not a stable
+algorithm when combined with function approximation, bootstrapping, and
+off-policy learning (Sutton &amp; Barto (2018), Sec. 11.3). As established
+by the authors, TD(0) trained from real data, however, has an equivalent
+solution to doing TD(0) updates with data from a non-linear model. Thus,
+TD(0) may cause instability in planning. Alternatively, Gradient-TD
+methods have robust convergence properties, particularly when applied to
+function approximation, whether linear or nonlinear.</p>
+<h4 id="how">How</h4>
+<hr>
+<p>The core idea in this paper is the development of a stable planning
+algorithm for MBRL using expectation models that is particularly
+suitable for stochastic environments.</p>
+<blockquote>
+<p><strong>TL;DR</strong>: The Gradient Dyna planning algorithm is inspired by Gradient-TD based methods in both the objective that it aims to minimize and the computationally efficient way that it performs stochastic gradient descent (SGD). It can also be utilized with incomplete linear or non-linear models in an online fashion.</p>
+</blockquote>
+<p>Gradient-based TD methods have strong convergence guarantees for both
+linear and non-linear function approximation. They minimize the
+projected Bellman error. Similiarly, the goal here was to take
+inspiration from these methods. As a result, the authors introduced a
+new objective named the Model-Based Mean Square Projected Bellman Error
+(MS-MSPBE):</p>
+<p>$$
+\begin{align} \overline{\text{MB-PBE}}(\mathbf{w})
+\stackrel{.}{=} \mathop{\mathbb{E}}_{\zeta}[ \Delta_k
+\bm{\phi}_k ]^\top \cdot \mathop{\mathbb{E}}_{\zeta}[
+\bm{\phi}_k \bm{\phi}^\top_k ]^{-1} \cdot
+\mathop{\mathbb{E}}_{\zeta}[ \Delta_k \bm{\phi}_k ] \notag
+\end{align}
+$$</p>
+<p>The gradient of MS-MSPBE <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> is defined as:</p>
+<p>$$
+\begin{align} \nabla \overline{\text{MB-PBE}}(\mathbf{w})
+\stackrel{.}{=} \underbrace{\mathop{\mathbb{E}}_{\zeta}[ (
+\gamma \mathbf{\hat{x}}(\bm{\phi}_k, A_k) -
+\bm{\phi}_k)\bm{\phi}^\top_k] \cdot
+\mathop{\mathbb{E}}_{\zeta}[ \bm{\phi}_k \bm{\phi}^\top_k
+]^{-1}}_{\text{estimated with} \mathbf{V} \text{via LMS method}}
+\notag \\
+\cdot \underbrace{\mathop{\mathbb{E}}_{\zeta}[
+\Delta_k \bm{\phi}_k ]}_{\text{sampled at every timestep}}
+\notag \end{align}
+$$</p>
+<p>The essential steps in Gradient Dyna (cf. Algorithm 1 in paper) then
+are:</p>
+<p>$$
+\begin{align} \mathbf{w}_{k+1} \stackrel{.}{=}
+\mathbf{w}_{k} - \alpha_k \mathbf{V}_{k} \Delta_k \bm{\phi}_k
+\notag \\
+\mathbf{V}_{k+1} \stackrel{.}{=} \mathbf{V}_{k} +
+\beta_k ( ( \gamma \mathbf{\hat{x}}(\bm{\phi}_k, A_k) -
+\bm{\phi}_k)\bm{\phi}^\top_k - \mathbf{V}_{k} \bm{\phi}_k
+\bm{\phi}_k^\top) \notag \\
+\text{with} ~ \mathbf{V}_0,
+\mathbf{w}_0 ~ \text{initialized arbitrarily} ~ \text{(e.g.,
+}\stackrel{.}{=} \bm{0}) \notag \end{align}
+$$</p>
+<ul>
+<li>To store the model for MBRL you need quadratic memory in the number
+of state features, for non-linear model might be less depending on
+the parameterization.</li>
+<li>The planning algorithm has $O(d^2)$ storage and per-step
+computation, with $d$ the number of state features.</li>
+</ul>
+<h4 id="thoughts">Thoughts</h4>
+<hr>
+<ul>
+<li>How can Gradient Dyna be extended to the control problem?</li>
+<li>What other parameterization of nonlinear models can be devised that
+require less than quadratic memory in the state features.</li>
+</ul>
+<h4 id="footnotes">Footnotes</h4>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>I adopted the notation from Sutton &amp; Barto (2018) using an overline
+over $\text{MB-PBE}$ to compactly denote the mean-square
+part.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>

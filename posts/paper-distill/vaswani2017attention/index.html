@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>A review of different Transformers-based algorithms and methods</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">A review of different Transformers-based algorithms and methods</h3>
+            
+            <small class="text-muted">Published February 15, 2023</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<p>In this blog I review some of the research in the area of area of Transformers models. The article is meant to be written at a high level. For more technical details please refer to the references mentioned.</p>
+<h3 id="recap-transformers">Recap: Transformers</h3>
+<p>First, I briefly explain what Transformers are, what some typical tasks are that these models aim to solve, and go through some of their architectural components and fundamental architectures. This brief recap is largely based on the wonderful formal presentation of Transformers by Phuong &amp; Hutter (2022). <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<h5 id="problems-that-transformers-aim-to-solve">Problems that Transformers aim to solve</h5>
+<ul>
+<li>Transformers model sequence data. They are most commonly used for sequence modeling (e.g., language modeling) and sequence-to-sequence prediction (e.g., text-to-speech), and classification problems (e.g., sentiment analysis, image classification).</li>
+</ul>
+<h5 id="tokenization">Tokenization</h5>
+<ul>
+<li>A token is the atomic structure of one single element of the vocabulary of each the sequences are composed from which a Transformer aims to solve one of the tasks mentioned above.</li>
+<li>character-level or subword level tokenization</li>
+<li>Tokenization refers to transforming a sequence, at some level discussed above, into a sequence of integers mapping to the elements in the vocabulary</li>
+</ul>
+<h5 id="architectural-components-specific-to-transformers">Architectural components specific to Transformers</h5>
+<ul>
+<li><strong>token embedding</strong>: a function that learns to map vocabulary elements into d-dimensional real-valued vectors</li>
+<li><strong>positional embedding</strong>: a function that learns a position vector of a token in a sequence of d-dimensional token embeddings. The position embedding is typically added to the token embedding which makes up the initial token embedding.
+<ul>
+<li>Positional embeddings can learn the absolute position (e.g., sinusoidal, rotation matrix) or relative position of a token wrt to the other contextual tokens. The embedding can be learned layer-wise or independently for each (encoder/decoder) layer.</li>
+<li>Transformers are sequence ordering invariant, meaning that they can&rsquo;t distinguish between two different sequences with exactly the same words.</li>
+<li>If the position embedding is learned then it has a finite length so inputs cannot be larger than that maximum length. If it&rsquo;s not learned, for example sinusoidal position embedding, then also inputs larger than those at training time can be used.</li>
+</ul>
+</li>
+<li><strong>attention</strong>: Roughly speaking, this is the mechanism by which the Transformer model can predict the probability of a token given its contextual information by learning which tokens in that context to pay more attention to, given the similarity between the token to be predicted and all others.
+<ul>
+<li>the to-predict-token is mapped to a key vector, while all other in-context tokens are mapped to query tokens, each of which has also a value token. A good analogy here is provided by <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>, that of querying a database for <em>approximate</em> answers. The input is a query. The database has (key, value) pairs. Querying the database means trying to find the values for which the query is most similar to the keys. Not all keys are equally important, hence we also learn <em>to attend to</em> the ones that are more important.</li>
+</ul>
+</li>
+<li><strong>masking</strong>: is a mechanism by which the attention mechanism may attend to a constrained set of tokens in the sequence. When no masking is applied, tokens can attend to all other tokens in the sequence, hence we say it is a bidirectional encoding. On the other hand, when tokens are not allowed to attend to other tokens in the future, but only those from the past, we use uni-directional encoding, masking the future tokens.
+<ul>
+<li>Masking is a task-dependent mechanism. For some tasks, peaking into the future (in the sequence) is just not permitted.</li>
+</ul>
+</li>
+<li><strong>cross-attention</strong>: this mechanism is typically applied in Encoder-Decoder architectures (cf. next section) such as language translation where we have a pair of source and target language sequences. Specifically, the encoder applies self-attention on the source-language sequence and the encoded output is then used in the decoder as part of a cross-attention between it and the encoded target-language sequence.</li>
+<li><strong>multi-head attention</strong>: typically attention, as described above, is applied many times independently in parallel over chunks of the initial sequence, and the encoded outputs are then concatenated. This is achieved by using multiple attention headas, each with its own set of paramters randomly initialied. In this way the multi-attention heads can capture different variability in the sequence.</li>
+</ul>
+<h5 id="transformers-architectures">Transformers architectures</h5>
+<ul>
+<li>
+<p><strong>Encoder-Decoder</strong></p>
+<ul>
+<li>Typically used for sequence-to-sequence modeling, e.g., machine translation. To expand on this example, we have a source-language sequence and a target-language sequence. First the encoder encodes the source-language sequence by allowing each token to attend to each other token in that sequence. Then the decoder is encoding first the target-language sequence in the same fashion as the encoder using bidirectional self-attention. Then, the decoder additionally uses cross-attention <em>with causal masking</em> between the encoded source-language sequence and the encoded target-language sequence to produce, in this case, a translation from the source to target language.</li>
+</ul>
+</li>
+<li>
+<p><strong>Encoder-Only (e.g., Bert)</strong></p>
+<ul>
+<li>BERT is an instantiation of an encoder-only Transformer. It was developed for learning robust text representations that can easily be applied to new downstream-tasks without modifying the backbone architecture. During training some tokens are masked out with some probability using a masked-token, and the model needs to learn to reconstruct the original tokens using the context around them.</li>
+</ul>
+</li>
+<li>
+<p><strong>Decoder-Only (e.g., GPT-2)</strong></p>
+<ul>
+<li>GPT-2 is an instantiation of this Transformer architecture. Being an autoregressive model, i.e., trying to predict the next token from a partial sequence, it uses unidirectional attention (masking out future tokens for any query token that come after it).</li>
+</ul>
+</li>
+</ul>
+<h3 id="various-transformer-based-architectures-and-methods">Various Transformer-based architectures and methods</h3>
+<p>This section is based on Lil&rsquo;Log&rsquo;s blog post <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. I read through many of the papers referenced in the post.</p>
+<h4 id="improving-squared-dependency-on-context-length">Improving squared dependency on context length</h4>
+<ul>
+<li>impacts inference time since context length depends on the one used during training</li>
+<li>T: $O(L^2 \times D)$, M: $O(L^2)$</li>
+<li>overcome within sequence limited attention
+<ul>
+<li>Transformers-XL
+<ul>
+<li>context memory to capture attention dependencies intra-segments (between segments)</li>
+</ul>
+</li>
+<li>Compressive Transformer
+<ul>
+<li>iteratively compressing sequence into shorter and shorter memories</li>
+<li>uses two new losses
+<ul>
+<li>Attention-reconstruction loss : how well can i reconstruct the attention given original memories and compressed memories</li>
+<li>Auto-encoding loss: how well can i reconstruct original memories from compressed ones</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Non-Differentiable External Memory
+<ul>
+<li>in addition to LM next-token prediction, add a kNN (on LM embedding) average of all the k, v = (LM embedding representation of context, next token)</li>
+<li>huge external memory possible</li>
+<li>use fast kNN retrievals like FAISS</li>
+<li>indexing is costly but happens only once</li>
+</ul>
+</li>
+<li>SPALM
+<ul>
+<li>kNN-LM + Transformers-XL (balancing short-term memory and long-term memory)</li>
+<li>Distance-Enhanced Attention Scores</li>
+<li>DA-Transformer
+<ul>
+<li>maintains complexity of vanilla Transformer</li>
+<li>different relative position embeddings for each head</li>
+<li>relative position distance weights regulate the attention weight
+<ul>
+<li>for example if the weight for the long distance is large than the attention score for that k,q pair is amplified.</li>
+</ul>
+</li>
+<li>extrapolation is possible because of using relative distance</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="recurrent-modules">Recurrent modules</h4>
+<ul>
+<li>Universal Transformers
+<ul>
+<li>equation (4) and (5)</li>
+<li>hidden state is computed from self-attention on previous h plus transition function (either FFN or conv layer depending on problem) to attention-layer output</li>
+<li>determine number of timesteps to update hidden state dynamically using ACT <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></li>
+<li>hyper-parameters: <code>threshold_for_halting_probability</code>, <code>max_timesteps</code></li>
+<li>probability of a hidden state is computed via a sigmoid dense layer</li>
+</ul>
+</li>
+</ul>
+<h4 id="adaptive-modeling">Adaptive Modeling</h4>
+<ul>
+<li>the quadratic time complexity is particularly problematic for character-level modeling (where context spans across thousands of timesteps)
+<ul>
+<li>cases such as protein folding are impacted?</li>
+</ul>
+</li>
+<li>Adaptive Attention Span
+<ul>
+<li>some evidence suggests that attention layers in early layers of the net attend to short context lengths while layers in upper end attend to longer context lengths</li>
+<li>unlike in the standard Transformer where each head shares the same attention span S, here the objective is to learn the attention spans independently for each head</li>
+<li>Attention span range is pre-determined by a minimum range (32) and maximum range (S=4096)</li>
+<li>Dynamic adaptive span: where the span parameters are dependent to the current input</li>
+</ul>
+</li>
+</ul>
+<h4 id="depth-adaptive-transformer">Depth-Adaptive Transformer</h4>
+<ul>
+<li>Perform different amount of computation based on how difficult it is to make predictions for given input sequence</li>
+<li>The model was used for the problem of large-scale machine translation (source language to target language)</li>
+<li>Output classifiers parameterized independently (or can share weights) are attached to the output of each decoder block
+<ul>
+<li><strong>Training multiple output classifiers</strong>:
+<ul>
+<li>The following two approaches are ways the authors experimented with training the classifiers to output the next token given previous hidden state. This loss is called the <em>decoder loss</em>.</li>
+<li><strong>Aligned training</strong>
+<ul>
+<li>All classifiers are trained simultaneously. This assumes that all hidden states needed for each classifier at the respective decoder depth are available (The paper does not explain how this simultaneous computing procedure is performed, so I can only speculate that a forward pass of the whole input sequence for each decoder depth is performed, after which simultaneous backward passes for all classifiers can be run).</li>
+<li>At test time though if hidden states are not available because for a previous time-step the model exited early, the missing hidden states are copied from previous layers are copied.</li>
+</ul>
+</li>
+<li><strong>Mixed training</strong>
+<ul>
+<li>To avoid this mismatch between training and testing that aligned training does, authors experimented with a training procedure that handles the two phases, training and testing, equally. They propose to sample M exits for each of the timesteps of the input sequence. That is, for each timestep the model will exit at a random decoder depth. To ensure that all previously required hidden states are available, they are copied from decoder layers below if not available at the current depth.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Adaptive Depth Estimation</strong>
+<ul>
+<li>The actual depth estimation, so where to stop and output the next token, is learned via a second loss called the <em>exit loss</em>.</li>
+<li><strong>Sequence-specific depth</strong>: In this approach the model learns to stop at the same depth for <em>all</em> tokens in the sequence.
+<ul>
+<li>The exit loss here is defined as the cross-entropy between a time-<em>independent</em> parametric distribution $q$ which takes the encoder output as input, and an oracle distribution $q^{*}$, also time-independent that takes in the encoder output and target sequence <em>y</em>. Both distributions are multinomial softmax functions that output the probability of exiting at a given depth <em>n</em>.
+<ul>
+<li>The oracle distribution, so the target for the approximate distribution, was chosen by the authors to be one of:
+<ul>
+<li><strong>Sequence likelihood-based</strong>: The block for which the likelihood over the entire sequence is maximal is selected.
+<ul>
+<li>Optionally, one can add regularization over the depth $n$ to encourage maximum likelihood at lower depth.</li>
+</ul>
+</li>
+<li><strong>Correctness-based</strong>: Here, the number of correctly predicted tokens of each block is maximized. Similarly to the above oracle, regularization on the depth can be used to prefer lower blocks.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Token-Specific Depth</strong>: This approach selects a different exit block for each token in the sequence. In one method, the most likely exit conditioned on the first decoder hidden state among all blocks is selected. In a second method, a probability is assigned to each block based on its activations. For all blocks except the last one, the probability of stopping at the current block, multiplied by the probability trace of not stopping at any previous block lower than the current one, is assigned. This is applicable to every depth $n &lt; N$. However, for the final block, only the trace is taken into account due to the probability of ending being one since there is no decoder block following it.
+<ul>
+<li>For both methods, oracles are needed. Oracles can be determined by likelihood-based method, so favoring at each timestep the block whose exit classifier has the highest likelihood.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="flash-attention">Flash Attention</h4>
+<ul>
+<li>Implements standard attention in exact form by computing some extra statistics such that the number of read/writes to/from HBM is minimized. In doing so it improves the memory usage over the standard attention implementation from quadratic complexity in sequence length to linear complexity.</li>
+<li>Authors provide also a flash attention implementation for sparse attention (where some of the pairwise attention values are zero) that is more efficient than flash attention by a factor proportional to the sparsity.</li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Phuong, M., &amp; Hutter, M. (2022). Formal algorithms for transformers. arXiv preprint arXiv:2207.09238.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Zhang, A., Lipton, Z. C., Li, M., &amp; Smola, A. J. (2021). Dive into deep learning. arXiv preprint arXiv:2106.11342.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Weng, Lilian. (Apr 2020). The transformer family. Lil’Log. <a href="https://lilianweng.github.io/posts/2020-04-07-the-transformer-family/">https://lilianweng.github.io/posts/2020-04-07-the-transformer-family/</a>.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Alex Graves. Adaptive computation time for recurrent neural networks. arXiv preprint arXiv:1603.08983, 2016.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>

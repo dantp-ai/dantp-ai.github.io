@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>Soft actor-critic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">Soft actor-critic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor</h3>
+            
+            <small class="text-muted">Published June 1, 2023</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Title</strong>:</td>
+          <td style="text-align: left">Soft actor-critic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Authors</strong>:</td>
+          <td style="text-align: left">Tuomas Haarnoja, Aurick Zhou, Pieter Abbeel, Sergey Levine</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Link</strong>:</td>
+          <td style="text-align: left"><a href="https://proceedings.mlr.press/v80/haarnoja18b/haarnoja18b.pdf">https://proceedings.mlr.press/v80/haarnoja18b/haarnoja18b.pdf</a></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="what">What</h4>
+<hr>
+<p>Off-policy actor-critic deep RL algorithm with <em>stochastic</em> actor for continuous state and action space maximizing the expected reward plus the expected <em>entropy</em> of the target policy.</p>
+<h4 id="why">Why</h4>
+<hr>
+<p>Existing model-free deep RL algorithms have very high sample complexity, and sensitive convergence properties, hence extensive hyper-parameter tuning for new domains needed.</p>
+<h4 id="how">How</h4>
+<hr>
+<blockquote>
+<p><strong>TL;DR</strong>: The Soft Actor-Critic (SAC) algorithm is an off-policy algorithm that optimizes a stochastic policy, concurrently learning a policy and two Q-functions, and it is designed for continuous state and action spaces, aiming to maximize the entropy of the policy to encourage exploration.</p>
+</blockquote>
+<p>SAC aims to solve the problem of maximizing cumulative expected reward plus maximizing the entropy of the policy. The problem is sometimes referred to as Entropy-Regularized<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Reinforcement Learning (RL), and is different than the standard RL problem of maximizing cumulative expected reward.</p>
+<p>The new RL objective is:</p>
+<p>$$
+\begin{align}
+J(\pi) \stackrel{.}{=} \mathbb{E}_{\pi} \Big[  R_{t+1} + \beta \mathcal{H} \big( \pi(A_t | S_t ) \big) | S_t, A_t \sim \pi \Big],
+\end{align}
+$$</p>
+<p>where</p>
+<ul>
+<li>
+<p>$\mathcal{H} \big( \pi( \cdot | S_t ) \big) \stackrel{.}{=} \mathbb{E}_{\pi}\Big[ -\log \big( \pi( \cdot | S_t ) \big) \Big] $ is the entropy of the policy $\pi$.</p>
+<ul>
+<li>$\beta$<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> &ndash; trade-off coefficient between the policy entropy term and the reward<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="soft-approximate-policy-iteration-s-api">Soft Approximate Policy Iteration (s-API)</h3>
+<p>Instead of running policy iteration with policy evaluation and policy improvement to convergence, the two steps are each approximated with some number of gradient descent steps.</p>
+<p>The value function, two action-value functions, and policy are parametrized using function approximation by $\mathbf{w}, \bm{\theta}_1, \bm{\theta}_2, \bm{\theta}_\pi$ . We surpress in the following equations, where appropriate, that these quantities are functions of their parameters.</p>
+<h4 id="policy-evaluation">Policy Evaluation</h4>
+<p>In policy evaluation, the state-value and action-value functions are updated.</p>
+<p><strong>State-value function</strong></p>
+<p>$$
+\begin{align}
+J_{\hat{v}}(\mathbf{w}) &amp;\stackrel{.}{=} \mathbb{E}_{s \sim \mathcal{D}} \Bigg[  \frac{1}{2} \Big( \hat{v}(s, \mathbf{w}) - \mathbb{E}_{\tilde{a} \sim \pi( \cdot | s, \bm{\theta}_\pi) } [ \hat{q}(s, \tilde{a}) - \log \pi(\tilde{a} | s, \bm{\theta}_\pi) ]  \Big)^2  \Bigg],
+\end{align},
+$$</p>
+<p>where $\mathcal{D} \stackrel{.}{=} \lbrace (s, a, r, s^\prime) \rbrace^N_{n=1}$ is the replay buffer and $\tilde{a}$ is to denote that the action is sampled from the current policy and not the replay buffer.</p>
+<p>$$
+\begin{align}
+\hat{q}(s, a) \stackrel{.}{=} \min_{ i \in \lbrace 1, 2 \rbrace } \hat{q}(s, a | \bm{\theta}_i), ~~~~ \forall s \in \mathcal{S}, a \in \mathcal{A}
+\end{align}
+$$</p>
+<p>The gradient of Equation 2 is:</p>
+<p>$$
+\begin{align}
+\nabla J_{\hat{v}}(\mathbf{w}) \stackrel{.}{=} \nabla \hat{v}(s, \mathbf{w}) \Big(  \hat{v}(s, \mathbf{w}) - \hat{q}(s, a) + \log \pi(a | s, \bm{\theta}_\pi) \Big), ~~~~ \forall s \in \mathcal{S}, a \in \mathcal{A}.
+\end{align}
+$$</p>
+<p><strong>Action-value function</strong></p>
+<p>$$
+\begin{align}
+J_{\hat{q}}(\bm{\theta}) \stackrel{.}{=} \mathbb{E}_{(s, a) \sim \mathcal{D}} \Bigg[ \frac{1}{2} \Big(  \hat{q}(s, a, \bm{\theta}) - (r(s, a) + \gamma \mathbb{E}_{s^\prime \sim \mathcal{D}}[ \hat{v}(s^\prime, \mathbf{w^{\text{target}}})]) \Big) \Bigg]
+\end{align}
+$$</p>
+<p>The gradient of Equation 5 is:</p>
+<p>$$
+\begin{align}
+\nabla J_{\hat{q}}(\bm{\theta}) \stackrel{.}{=} \nabla \hat{q}(a, s, \bm{\theta}) \left( \hat{q}(s, a, \bm{\theta}) - r(s, a) - \gamma \hat{v}(s^\prime, \mathbf{w^{\text{target}}}) \right).
+\end{align}
+$$</p>
+<ul>
+<li>$\mathbf{w^{\text{target}}}$ are the parameters of the <em>target</em> state-value function <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</li>
+</ul>
+<h4 id="policy-improvement">Policy Improvement</h4>
+<p>In policy improvement step, the policy is updated using the value functions from previous step.</p>
+<p>In this paper, they minimize the KL-divergence between the policy and a Boltzmann distribution.</p>
+<p>$$
+\begin{align}
+J_{\pi}(\bm{\theta_{\pi}}) \stackrel{.}{=} \mathbb{E}_{s \sim \mathcal{D}} \Bigg[ \mathcal{KL} \Big(  \pi(\cdot | s, \bm{\theta_{\pi}}) \Vert \frac{\exp(s, \hat{q}(s, \cdot, \bm{\theta}))}{Z(s, \bm{\theta})} \Big)  \Bigg]
+\end{align}
+$$</p>
+<p>To take the gradient of Equation 7, the paper uses standard backpropagation. Since the KL divergence is an expectation over a distribution that depends on the parameters of the policy, we need to remove this dependence since we cannot take derivatives of a stochastic quantity. To do this, we use the reparametrization trick, which moves the stochasticity of the distribution away from the learnable parameters. This doesn&rsquo;t work for every distribution, but it does for Gaussians.</p>
+<p>The policy is parametrized using function approximation to estimate the mean and standard deviation of a Gaussian squashed by a $\text{tanh}$ to have bounded action values in range $[ -1, 1]$.</p>
+<p>$$
+a \stackrel{.}{=} \tanh \Big( \mu_{\bm{\theta}_\pi}(s) + \sigma_{\bm{\theta}_\pi}(s) \odot \xi \Big) \stackrel{.}{=} f(\xi, s, \bm{\theta}_\pi), ~~~~ \xi \sim \mathcal{N}(\bm{0}, \mathbf{I})
+$$</p>
+<p>With this reparametrization the Equation 7 is now:</p>
+<p>$$
+\begin{align}
+J_{\pi}(\bm{\theta_{\pi}}) \stackrel{.}{=} \mathbb{E}_{s \sim \mathcal{D}, \xi \sim \mathcal{N}} \Big[ \log \pi( f(\xi | s, \bm{\theta_{\pi}}), s, \bm{\theta_{\pi}}) - \hat{q}(s, f(\xi | s, \bm{\theta_{\pi}}), \bm{\theta})  \Big]
+\end{align}
+$$</p>
+<p>The gradient of Equation 8 is:</p>
+<p>$$
+\begin{align}
+\nabla J_{\pi}(\bm{\theta_{\pi}}) \stackrel{.}{=} \nabla_{\bm{\theta_{\pi}}} + (\nabla_a \log \pi(a, s) - \nabla_a \hat{q}(s, a, \bm{\theta})) \nabla f(\xi, s, \bm{\theta_{\pi}})
+\end{align}
+$$</p>
+<h3 id="pseudocode">Pseudocode</h3>
+<p>Below is the pseudocode algorithm specification of SAC using a Py-like syntax.</p>
+<p><strong>Soft-Actor Critic for estimating $\pi_\theta \approx \pi_*$</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">## Inputs</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input: differentiable state-value function approximation v_hat(s | w)</span>
+</span></span><span style="display:flex;"><span>v_hat <span style="color:#f92672">=</span> v_hat<span style="color:#f92672">.</span>init(w)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input: target state-value function approximation v_hat_bar(s | w_target)</span>
+</span></span><span style="display:flex;"><span>v_hat_bar <span style="color:#f92672">=</span> v_hat<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input: differentiable soft state-action function approximation q_hat_1(s, a | theta_q1)</span>
+</span></span><span style="display:flex;"><span>q_hat_1 <span style="color:#f92672">=</span> theta_q1<span style="color:#f92672">.</span>init(theta_q_1)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input: differentiable soft state-action function approximation q_hat_2(s, a | theta_q2)</span>
+</span></span><span style="display:flex;"><span>q_hat_2 <span style="color:#f92672">=</span> q_hat_2<span style="color:#f92672">.</span>init(theta_q_2)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input: differentiable policy parameterization pi(a | s, theta_pi)</span>
+</span></span><span style="display:flex;"><span>pi <span style="color:#f92672">=</span> pi<span style="color:#f92672">.</span>init(theta_pi)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Parameters</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># where appropriate the values are from the paper</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stepsizes</span>
+</span></span><span style="display:flex;"><span>alpha_v_hat, alpha_q_hat, alpha_pi <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.003</span>, <span style="color:#ae81ff">0.003</span>, <span style="color:#ae81ff">0.003</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># entropy coefficient</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Polyak averaging decay</span>
+</span></span><span style="display:flex;"><span>tau <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.995</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Discount factor</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.99</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Initialize</span>
+</span></span><span style="display:flex;"><span>B <span style="color:#f92672">=</span> ReplayBuffer(size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000_000</span>)
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>reset()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Define</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># double q-function minimum state-action function approximation q_hat(s, a)</span>
+</span></span><span style="display:flex;"><span>q_hat <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> s, a: min(q_hat_1(s, a), q_hat_2(s, a))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#f92672">not</span> done:
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> pi(s)
+</span></span><span style="display:flex;"><span>    s_next, r, done <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>step(a)
+</span></span><span style="display:flex;"><span>    B<span style="color:#f92672">.</span>append((s, a, r, s_next))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    batch <span style="color:#f92672">=</span> B<span style="color:#f92672">.</span>sample(size<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> example <span style="color:#f92672">in</span> batch:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Update state-value function</span>
+</span></span><span style="display:flex;"><span>        J_v_hat <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> ((v_hat(s) <span style="color:#f92672">-</span> (q_hat(s, a) <span style="color:#f92672">-</span> log(pi(s, theta_pi)) ))<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        w <span style="color:#f92672">=</span> w <span style="color:#f92672">-</span> alpha_v_hat <span style="color:#f92672">*</span> grad(J_v_hat)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Update target state-value function</span>
+</span></span><span style="display:flex;"><span>        v_hat_bar <span style="color:#f92672">=</span> tau <span style="color:#f92672">*</span> v_hat <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> tau) <span style="color:#f92672">*</span> v_hat_bar
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Update state-action functions</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>):
+</span></span><span style="display:flex;"><span>            J_q <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> ((q_hat_i(s, a, theta_q_i) <span style="color:#f92672">-</span>
+</span></span><span style="display:flex;"><span>                (r <span style="color:#f92672">+</span> gamma <span style="color:#f92672">*</span> v_hat_bar(s_next, theta_q_i)))<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            theta_q_i <span style="color:#f92672">=</span> theta_q_i <span style="color:#f92672">-</span> alpha_q_hat <span style="color:#f92672">*</span> grad(J_q)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Update policy parameters</span>
+</span></span><span style="display:flex;"><span>        J_theta_pi <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>            KL(pi(s, theta_pi), exp(q_hat(q_hat(s, a))))
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        theta_pi <span style="color:#f92672">=</span> theta_pi <span style="color:#f92672">-</span> alpha_pi <span style="color:#f92672">*</span> grad(J_theta_pi)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> s_next
+</span></span></code></pre></div><h4 id="thoughts">Thoughts</h4>
+<hr>
+<ul>
+<li>I&rsquo;m skeptical about the experimental setup, as some of the results don&rsquo;t agree with the TD3 paper (Fujimoto et. al 2018) that was done concurrently with this work.</li>
+<li>To my understanding, SAC as developed above is not a true policy gradient method since the policy is not updated using the policy gradient theorem.
+<ul>
+<li>Would be interesting to know how SAC performs if the policy is optimized using the likelihood ration from the policy gradient theorem instead of doing backpropagation through the action-value function.</li>
+</ul>
+</li>
+</ul>
+<h4 id="references">References</h4>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://spinningup.openai.com/en/latest/algorithms/sac.html#id6">https://spinningup.openai.com/en/latest/algorithms/sac.html#id6</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Also known as <em>temperature</em> parameter in the literature.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>In the limit $\alpha \rightarrow 0$, the standard RL objective is recovered.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>This target is used to make the updates of the value function stable. They can be updated using an exponentially moving average (cf. Polyak averaging) of the actual state-value function parameters $\mathbf{w}$ or updated periodically.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>

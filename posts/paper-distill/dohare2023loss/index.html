@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>Loss of Plasticity in Deep Continual Learning</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">Loss of Plasticity in Deep Continual Learning</h3>
+            
+            <small class="text-muted">Published October 29, 2023</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Title</strong>:</td>
+          <td style="text-align: left">Loss of Plasticity in Deep Continual Learning</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Authors</strong>:</td>
+          <td style="text-align: left">Shibhansh Dohare, J. Fernando Hernandez-Garcia, Parash Rahman, Richard S. Sutton, A. Rupam Mahmood</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Link</strong>:</td>
+          <td style="text-align: left"><a href="https://arxiv.org/pdf/2306.13812v2.pdf">https://arxiv.org/pdf/2306.13812v2.pdf</a></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="what">What</h4>
+<hr>
+<p>This paper presents an extensive and systematic empirical study that
+proves standard deep learning systems fail to keep learning in a
+continual learning environment. It explains some of the core reasons for
+this problem of loss of plasticity, and proposes a natural extension to
+the backpropagation algorithm that can reliably maintain plasticity for
+continual learning.</p>
+<h4 id="why">Why</h4>
+<hr>
+<p>Most deep learning systems are only trained once on a dataset, and then
+tested in the real world. However, it&rsquo;s obvious that those systems
+should be able to continually learn in a <em>changing</em> environment. If the
+systems drift away because of changes in the data they were trained on,
+they&rsquo;re trained again from scratch. This is a computationally
+inefficient method, especially when the world is changing frequently.</p>
+<p>The most feasible solution is for the systems to continually learn, but
+standard deep learning systems with various network architectures,
+activations functions, optimizers, batch normalization, and dropout fail
+to do so.</p>
+<h4 id="how">How</h4>
+<hr>
+<p>Continual learning involves both memorizing things learned before (or
+not catastrophically forget) and ability to learn new things (or
+maintain plasticity). The paper addresses the second issue. They ask
+whether deep-learning systems lose plasticity in continual learning
+problems? The definitive answer is yes for continual supervised learning
+problems.</p>
+<blockquote>
+<p><strong>TL;DR</strong>: <em>Continual</em> backpropagation (CBP), a natural extension of the standard backpropagation algorithm to the continual setting is proposed, that extends initialization of weights to <em>all</em> time steps, by replacing less useful units based on a utility measure, and performs stochastic gradient descent on each example. CBP maintains plasticity for continual learning and is robust to hyper-parameter tuning.</p>
+</blockquote>
+<p>To study loss of plasticity the authors measure three essential
+properties:</p>
+<ul>
+<li><strong>number of dead units</strong>: if a hidden units&rsquo; output is zero or close
+to zero for all examples, then that unit essentially is useless
+$\Rightarrow$ the lower the better.</li>
+<li><strong>weight magnitude</strong>: large weights can lead to exploding gradients
+$\Rightarrow$ the lower the the better.</li>
+<li><strong>effective rank</strong>: for network layers, the effective rank of the
+weight matrix explains how many of the units of that layer
+contribute to the output of the layer $\Rightarrow$ the higher
+the rank the better.</li>
+</ul>
+<hr>
+<p>CBP extends standard backpropagation by initializing weights in all
+layers at all time steps after doing a per-example gradient descent
+step.</p>
+<p>A fraction of hidden units with the lowest utility are considered for
+replacement. The utility measures both <em>contribution</em> of a unit to its
+consumers (units taking its input) and <em>adaptility</em>. To ensure that
+newly reinitialized units are not replaced immediately after, there is a
+maturity threshold set to allow them to specialize.</p>
+<p>CBP has two new hyper-parameters:</p>
+<ul>
+<li>replacement rate $\rho$ (float)</li>
+<li>maturity threshold $M$ (int)</li>
+</ul>
+<p>CBP has constant extra memory and time computation per-step, since it
+does not grow number of units over time.</p>
+<p>The running average of the utility measure is defined by $y$ as:</p>
+<p>$$
+\begin{align} y_{l, i, t} &amp;\stackrel{.}{=} \frac{ | h_{l, i, t} - \hat{f}_{l, i, t} | \cdot \sum_{k=1}^{n_{l+1}} | w_{l, i, k, t} | }{\sum_{j=1}^{n_{l-1}} | w_{l-1, j, i, t} | }, \\
+u_{l, i, t} &amp;\stackrel{.}{=} \eta \cdot u_{l, i, t-1} + (1 - \eta) \cdot y_{l, i, t}, \\
+\hat{u}_{l, i, t} &amp;\stackrel{.}{=} \frac{u_{l, i, t-1}}{1 - \eta^{a_{l, i, t}}}, \\
+\hat{f}_{l, i, t} &amp;\stackrel{.}{=} \frac{f_{l, i, t-1}}{1 - \eta^{a_l, i, t}}, \\
+f_{l, i, t} &amp;\stackrel{.}{=} \eta \cdot f_{l, i, t-1} + (1 - \eta) \cdot h_{l, i, t} \end{align}
+$$</p>
+<p>The input weights of the eligible units for replacement at some layer
+$l$ are initialized from the initial distribution $d_l$. Output
+weights of those units are set to zero.</p>
+<h5 id="cbp-vs-existing-deep-learning-methods-for-mitigating-loss-of-plasticity">CBP vs. existing deep learning methods for mitigating loss of plasticity</h5>
+<p>Among the most used deep-learning methods for mitigating loss of
+plasticity such as L2-regularization, shrink-and-perturb, dropout,
+online normalization, and adaptive momentum estimation (Adam), the first
+two exhibited a minimum loss of plasticity. All others have failed to
+maintain plasticity, while CBP was significantly superior in terms of
+online classification accuracy.</p>
+<p>CBP had much fewer dead units and a higher effective ranking compared to
+the other methods used. Shrink-and-perturb had a slightly lower weight
+magnitude than CBP, but both had low values.</p>
+<h4 id="thoughts">Thoughts</h4>
+<hr>
+<ul>
+<li>
+<p>Why does Adam and Dropout drastically exarcebate loss of plasticity?</p>
+<ul>
+<li>Dropout is really bad for continual learning. Since there is no
+purposeful selection involved what exactly is discarded during
+this process?</li>
+</ul>
+</li>
+<li>
+<blockquote>
+<p>To increase confidence in the results and to ensure that the performance drop is not due to some bug in the implementation, one of the authors independently reproduced the results of this experiment.</p>
+</blockquote>
+<ul>
+<li>Is this common practice in a research project? If not, it should
+be!!</li>
+</ul>
+</li>
+<li>
+<p>Online normalization is harder than it seems to implement
+effectively for continual learning.</p>
+</li>
+<li>
+<p>Although the weight magnitude and number of dead units rose quickly
+for standard backprop in the Online Permuted MNIST, the effective
+rank dropped at a much slower pace. While this is not a suitable
+long-term solution, the deep neural network still managed to learn
+some robust and powerful deep representations.</p>
+</li>
+<li>
+<p>In deep RL, using experience replay (ER) buffers creates a nearly
+training-once setting. ER requires a stable environment so changes
+in the dynamics don&rsquo;t occur frequently. Unfortunately, this
+condition is often not met in continual settings. If the transition
+dynamics change rapidly, the experience sampled from ER may not
+matter or could even harm the agent&rsquo;s ability to learn.</p>
+</li>
+<li>
+<p>I wonder how plasticity for continual learning will develop further
+in the RL setting? It seems to me that to be able to learn new
+things, some prior learned features are more important than others.
+Consequently, the agent should prepare for upcoming task changes by
+predicting what task it might face. With limited computational
+resources, the preparation would involve which features need to be
+replaced by new ones or perhaps by more &ldquo;distilled&rdquo; versions of
+existing features. Based on predicting what tasks lie ahead both
+short-term and long-term, the replacement then should be done with
+care as to make re-learning of previous features easier?</p>
+</li>
+</ul>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>An emphatic approach to the problem of off-policy temporal-difference learning</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">An emphatic approach to the problem of off-policy temporal-difference learning</h3>
+            
+            <small class="text-muted">Published April 15, 2023</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Title</strong>:</td>
+          <td style="text-align: left">An emphatic approach to the problem of off-policy temporal-difference learning</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Authors</strong>:</td>
+          <td style="text-align: left">Richard S. Sutton, A. Rupam Mahmood, Martha White</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Link</strong>:</td>
+          <td style="text-align: left"><a href="https://www.jmlr.org/papers/volume17/14-488/14-488.pdf">https://www.jmlr.org/papers/volume17/14-488/14-488.pdf</a></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="what">What</h4>
+<hr>
+<p>Introduces a new family of Temporal-Differences (TD) methods that improve on the classic TD(λ) methods by naturally extending them with the notion of emphasizing and de-emphasizing states based on intrinsic interest in them and the interest that follows from past visited states.</p>
+<h4 id="why">Why</h4>
+<hr>
+<p>It has been shown that TD(λ) can become unstable, meaning that the
+update values to the weight vector are diverging, in some cases
+including state-dependent bootstrapping $\lambda$ and most
+importantly off-policy learning. Other model-free TD algorithms like
+GTD($\lambda$) are stable under off-policy learning but they require
+maintaining two weight vectors and two step-sizes. Instead, <em>Emphatic</em>
+TD(λ) is stable for off-policy learning under linear function
+approximation for any discount function $\gamma$, bootstrapping
+function $\lambda$, and interest function $i$, and has linear
+per-step computational complexity with the negligible overhead of
+maintaining the emphasis scalar value at each time step.</p>
+<h4 id="how">How</h4>
+<hr>
+<blockquote>
+<p><strong>TL;DR</strong>: Emphatic TD(λ) is a direct successor of TD(λ) where the
+subtle but effective change in the algorithm is that the distribution,
+from which the updates to the weight vector are sampled, is warped, by
+emphasizing some states more than others based on the intrinsic
+interest in them and cumulative past interest leading to them, so that
+instability is overcome, and at the same time all the benefits of
+regular TD(λ) are preserved.</p>
+</blockquote>
+<p><em>Emphatic</em> TD($\lambda$) can be specified in its most general form by
+the following equations <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, for $t \ge 0$:</p>
+<p>$$
+\begin{align} \bm{\theta}_{t+1} &amp;\stackrel{.}{=} \bm{\theta}_{t} + \alpha ~ \Big( R_{t+1} + \gamma_{t+1} \bm{\theta}_{t}^\top \bm{\phi_{t+1}} - \bm{\theta}_{t}^\top \bm{\phi}_{t} \Big) ~ \bm{e}_{t} \\
+\bm{e}_{t} &amp;\stackrel{.}{=} \rho_t ( \gamma_t \lambda_t \bm{e}_{t-1} + M_t \bm{\phi}_{t}), \quad \text{with} ~~ \bm{e}_{-1} \stackrel{.}{=} \bm{0} \\
+M_t &amp;\stackrel{.}{=} \lambda_t i(S_t) + (1 - \lambda_t) ~ F_t \\
+F_t &amp;\stackrel{.}{=} \rho_{t-1} \gamma_t F_{t-1} + i(S_t), \quad \text{with} ~~ F_0
+\stackrel{.}{=} i(S_0) \end{align}
+$$</p>
+<p>During the learning process, some updates to the weight vector can
+become excessively large, leading to an unstable scenario where future
+updates spiral out of control, ultimately resulting in infinitely large
+values. Although stability alone is not sufficient, it is required for
+convergence. Emphatic TD aims to stabilise regular TD updates by molding
+the distribution of updating states while preserving the core TD error
+updates.</p>
+<p>If we consider the off-policy TD(0) update:</p>
+<p>$$
+\begin{align} \bm{\theta}_{t+1} &amp;\stackrel{.}{=}
+\bm{\theta}_{t} + \rho_t \alpha ~ \Big( R_{t+1} + \gamma
+\bm{\theta}_{t}^\top \bm{\phi}_{t+1} - \bm{\theta}_{t}^\top
+\bm{\phi}_{t} \Big) ~ \bm{\phi}_{t} \\
+&amp;= \bm{\theta}_{t} +
+\alpha ( \bm{b}_t - \bm{A}_t \bm{\theta}_{t}) \nonumber \\</p>
+<p>\bm{b} &amp;\stackrel{.}{=} \rho_t R_{t+1} \bm{\phi}_{t} \\
+\bm{A}
+&amp;\stackrel{.}{=} \rho_t \bm{\phi}_{t} (\bm{\phi_{t}} - \gamma
+\bm{\phi}_{t+1})^\top \end{align}
+$$</p>
+<p>and we take the expected update of $\bm{A}$, we get the following
+form:</p>
+<p>$$
+\begin{align} \bm{A} &amp;= \lim\limits_{t \rightarrow \infty} \mathop{\mathbb{E}}[\bm{A}_t] = \lim\limits_{t \rightarrow \infty} \mathop{\mathbb{E_\mu}}[\rho_t \bm{\phi}_{t}(\bm{\phi}_{t} - \gamma \bm{\phi}_{t+1})^\top] \\
+&amp;= \bm{\Phi}^\top \bm{D}_\mu (\bm{I} - \gamma \bm{P}_{\pi}) \bm{\Phi} \end{align}
+$$</p>
+<p>Matrix $\bm{A}$ leads to instability in case it is not positive
+semi-definite. Emphatic TD aims to warp the distribution
+$\bm{D}_{\mu}$ of updating states such that the matrix $\bm{A}$
+remains positive semi-definite thus ensuring stability. The TD error
+update form given by $\bm{I} - \gamma \bm{P}_{\pi}$ remains
+unchanged thus preserving all the features of regular TD.</p>
+<p>The above is for off-policy TD(0). The paper derives in detail the
+matrix $\bm{A}$ for the general case of arbitrary $\lambda$ and
+also for Emphatic TD, showing how the proposed <em>interest</em> function $i$
+and <em>followon trace</em> $F$ naturally result in positive
+semi-definiteness of $\bm{A}$.</p>
+<p>Below is a pseudocode for an agent applying the Emphatic TD learning
+update.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">agent_init</span>(self):
+</span></span><span style="display:flex;"><span>          self<span style="color:#f92672">.</span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.</span>
+</span></span><span style="display:flex;"><span>          self<span style="color:#f92672">.</span>F <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.</span>
+</span></span><span style="display:flex;"><span>          self<span style="color:#f92672">.</span>M <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">learn</span>(self, r, phi, phi_prev):
+</span></span><span style="display:flex;"><span>          target <span style="color:#f92672">=</span> r <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>gamma <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>dot(self<span style="color:#f92672">.</span>theta<span style="color:#f92672">.</span>T, phi)
+</span></span><span style="display:flex;"><span>          pred <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(self<span style="color:#f92672">.</span>theta<span style="color:#f92672">.</span>T, phi_prev)
+</span></span><span style="display:flex;"><span>          delta <span style="color:#f92672">=</span> target <span style="color:#f92672">-</span> pred
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          self<span style="color:#f92672">.</span>F <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gamma <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>F <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>i
+</span></span><span style="display:flex;"><span>          self<span style="color:#f92672">.</span>M <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>lambda_ <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>i <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>lambda_) <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>F
+</span></span><span style="display:flex;"><span>          self<span style="color:#f92672">.</span>e <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gamma <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>lambda_ <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>e <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>M <span style="color:#f92672">*</span> phi_prev
+</span></span><span style="display:flex;"><span>          self<span style="color:#f92672">.</span>theta <span style="color:#f92672">+=</span> self<span style="color:#f92672">.</span>alpha <span style="color:#f92672">*</span> delta <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>e
+</span></span></code></pre></div><h4 id="thoughts">Thoughts</h4>
+<hr>
+<ul>
+<li>
+<p>Emphatic TD solves all the known instability issues of TD while at
+the same time preserving all of its core features, making it the
+natural choice of a successor.</p>
+</li>
+<li>
+<p>Emphatic TD updates may exhibit larger variance than regular TD
+updates since the intensity at every time step may substantially
+vary in magnitude. An open research question is how to lower the
+variance of Emphatic TD.</p>
+</li>
+<li>
+<p>The interest function can be set uniformly across states or designed
+a priori. How to <em>meta-learn</em> the interest remains promising future
+work.</p>
+</li>
+<li>
+<p>More empirical results are needed to elucidate the full strength of
+Emphatic TD in its most general case with state-dependent
+discounting, state-dependent boostrapping, and state-dependent
+interest.</p>
+</li>
+</ul>
+<h4 id="footnotes">Footnotes</h4>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>I adopted the notation from Sutton, R. S., &amp; Barto, A. G. (2018).
+Vectors and matrices are lowercase respectively uppercase
+bold-faced. Also, in accordance with the adopted notation, any
+subsequent statements resulting from previous statements by
+definition are indicated with a dot above the equal sign like so
+$\stackrel{.}{=}$.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>

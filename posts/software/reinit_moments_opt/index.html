@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>Reinitializing the moments of the optimizer during learning (Jax)</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">Reinitializing the moments of the optimizer during learning (Jax)</h3>
+            
+            <small class="text-muted">Published May 27, 2023</small>
+        </div>
+
+        <article>
+            <p>Reinitializing the weights of a neural network has been shown to be effective for continual learning (cf. CBP algorithm <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>). In this short guide, I show how to update the moments of a momentum-based optimizer in Jax.</p>
+<p>Here I reinitialized <em>all</em> components of the two moments, not just those corresponding to low utility hidden units, as CBP does.</p>
+<p>Let&rsquo;s consider a simple regression problem with multivariate inputs in three dimensions and scalar targets. We minimize the squared error using <em>stochastic</em> momentum-based gradient descent. Specifically, we use the well-established Adam optimizer to update the parameters of a linear layer, processing a single example at each time step, for a total of 1000 steps.</p>
+<p>At each time step, after updating the parameters of the linear layer, we reinitialize the two moments of Adam to zero.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> jax
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> optax
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flax <span style="color:#f92672">import</span> linen <span style="color:#66d9ef">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flax <span style="color:#f92672">import</span> traverse_util
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flax.core <span style="color:#f92672">import</span> freeze
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flax.training <span style="color:#f92672">import</span> train_state
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flax.training.train_state <span style="color:#f92672">import</span> TrainState
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> jax <span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> jnp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> jax <span style="color:#f92672">import</span> random
+</span></span></code></pre></div><p>Initialize hyper-parameters:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>n_samples <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>x_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>y_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>step_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-3</span>
+</span></span></code></pre></div><p>Define linear model</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Dense(features<span style="color:#f92672">=</span>y_dim)
+</span></span></code></pre></div><p>Initialize model</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>key, subkey <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>split(jax<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>PRNGKey(seed))
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> jax<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(key, (x_dim, ))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>key, subkey <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>split(subkey)
+</span></span><span style="display:flex;"><span>params <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>init(key, x)
+</span></span><span style="display:flex;"><span>params
+</span></span></code></pre></div><pre><code>    FrozenDict({
+        params: {
+            kernel: Array([[-0.48033935],
+                [ 0.07632174],
+                [ 1.1726483 ]], dtype=float32),
+            bias: Array([0.], dtype=float32),
+        },
+    })
+</code></pre>
+<p>Generate random ground truth W and b</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>key <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>PRNGKey(seed)
+</span></span><span style="display:flex;"><span>key, subkey <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>split(key)
+</span></span><span style="display:flex;"><span>W <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>normal(key, (x_dim, y_dim))
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>normal(subkey, (y_dim, ))
+</span></span><span style="display:flex;"><span>true_params <span style="color:#f92672">=</span> freeze({<span style="color:#e6db74">&#39;params&#39;</span>: {<span style="color:#e6db74">&#39;bias&#39;</span>: b, <span style="color:#e6db74">&#39;kernel&#39;</span>: W}})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate samples with some noise</span>
+</span></span><span style="display:flex;"><span>key_sample, key_noise <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>split(key)
+</span></span><span style="display:flex;"><span>x_samples <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>normal(key_sample, (n_samples, x_dim))
+</span></span><span style="display:flex;"><span>y_samples <span style="color:#f92672">=</span> jnp<span style="color:#f92672">.</span>dot(x_samples,
+</span></span><span style="display:flex;"><span>                    W) <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.1</span> <span style="color:#f92672">*</span> random<span style="color:#f92672">.</span>normal(key_noise, (n_samples, y_dim))
+</span></span><span style="display:flex;"><span>x_samples<span style="color:#f92672">.</span>shape, y_samples<span style="color:#f92672">.</span>shape
+</span></span></code></pre></div><pre><code>    (1000, 3) (1000, 1)
+</code></pre>
+<p> </p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@jax.jit</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_step</span>(state, x, y):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">squared_error</span>(params):
+</span></span><span style="display:flex;"><span>        pred <span style="color:#f92672">=</span> state<span style="color:#f92672">.</span>apply_fn(params, x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> jnp<span style="color:#f92672">.</span>inner(y <span style="color:#f92672">-</span> pred, y <span style="color:#f92672">-</span> pred) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    loss_val, grads <span style="color:#f92672">=</span> jax<span style="color:#f92672">.</span>value_and_grad(squared_error)(state<span style="color:#f92672">.</span>params)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">=</span> state<span style="color:#f92672">.</span>apply_gradients(grads<span style="color:#f92672">=</span>grads)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> state, loss_val
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tx <span style="color:#f92672">=</span> optax<span style="color:#f92672">.</span>adam(learning_rate<span style="color:#f92672">=</span>step_size)
+</span></span><span style="display:flex;"><span>opt_state <span style="color:#f92672">=</span> tx<span style="color:#f92672">.</span>init(params)
+</span></span><span style="display:flex;"><span>opt_state
+</span></span></code></pre></div><pre><code>    (ScaleByAdamState(count=Array(0, dtype=int32), mu=FrozenDict({
+        params: {
+            bias: Array([0.], dtype=float32),
+            kernel: Array([[0.],
+                    [0.],
+                    [0.]], dtype=float32),
+        },
+    }), nu=FrozenDict({
+        params: {
+            bias: Array([0.], dtype=float32),
+            kernel: Array([[0.],
+                    [0.],
+                    [0.]], dtype=float32),
+        },
+    })),
+    EmptyState())
+</code></pre>
+<p> </p>
+<p>Initialize training state (model and optimizer params)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>state <span style="color:#f92672">=</span> TrainState(apply_fn<span style="color:#f92672">=</span>model<span style="color:#f92672">.</span>apply,
+</span></span><span style="display:flex;"><span>                   params<span style="color:#f92672">=</span>params,
+</span></span><span style="display:flex;"><span>                   tx<span style="color:#f92672">=</span>tx,
+</span></span><span style="display:flex;"><span>                   opt_state<span style="color:#f92672">=</span>opt_state,
+</span></span><span style="display:flex;"><span>                   step<span style="color:#f92672">=</span>jnp<span style="color:#f92672">.</span>array(<span style="color:#ae81ff">0.</span>))
+</span></span></code></pre></div><p>Train on a per-example basis and re-initialize moments at each time-step</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>losses <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n_samples):
+</span></span><span style="display:flex;"><span>    state, loss_val <span style="color:#f92672">=</span> train_step(state, x_samples[i], y_samples[i])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Reset moments:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 1. flatten</span>
+</span></span><span style="display:flex;"><span>    flat_mu <span style="color:#f92672">=</span> traverse_util<span style="color:#f92672">.</span>flatten_dict(state<span style="color:#f92672">.</span>opt_state[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>mu, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span>    flat_nu <span style="color:#f92672">=</span> traverse_util<span style="color:#f92672">.</span>flatten_dict(state<span style="color:#f92672">.</span>opt_state[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>nu, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 2. modify</span>
+</span></span><span style="display:flex;"><span>    flat_mu <span style="color:#f92672">=</span> jax<span style="color:#f92672">.</span>tree_util<span style="color:#f92672">.</span>tree_map(<span style="color:#66d9ef">lambda</span> x: jnp<span style="color:#f92672">.</span>zeros_like(x), flat_mu)
+</span></span><span style="display:flex;"><span>    flat_nu <span style="color:#f92672">=</span> jax<span style="color:#f92672">.</span>tree_util<span style="color:#f92672">.</span>tree_map(<span style="color:#66d9ef">lambda</span> x: jnp<span style="color:#f92672">.</span>zeros_like(x), flat_nu)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 3. unflatten &amp; freeze</span>
+</span></span><span style="display:flex;"><span>    new_mu <span style="color:#f92672">=</span> freeze(traverse_util<span style="color:#f92672">.</span>unflatten_dict(flat_mu, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/&#39;</span>))
+</span></span><span style="display:flex;"><span>    new_nu <span style="color:#f92672">=</span> freeze(traverse_util<span style="color:#f92672">.</span>unflatten_dict(flat_nu, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;/&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># update moments optimizer</span>
+</span></span><span style="display:flex;"><span>    new_opt_state <span style="color:#f92672">=</span> (state<span style="color:#f92672">.</span>opt_state[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>_replace(
+</span></span><span style="display:flex;"><span>        mu<span style="color:#f92672">=</span>new_mu, nu<span style="color:#f92672">=</span>new_nu), ) <span style="color:#f92672">+</span> state<span style="color:#f92672">.</span>opt_state[<span style="color:#ae81ff">1</span>:]
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">=</span> state<span style="color:#f92672">.</span>replace(opt_state<span style="color:#f92672">=</span>new_opt_state)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># book-keeping</span>
+</span></span><span style="display:flex;"><span>    losses<span style="color:#f92672">.</span>append(loss_val)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># log loss averaged over last 100 examples</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        print(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Step: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">:&#39;</span><span style="color:#f92672">.</span>format(i), <span style="color:#e6db74">&#39;Avg. loss (last 100): </span><span style="color:#e6db74">{:.4f}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(
+</span></span><span style="display:flex;"><span>                jnp<span style="color:#f92672">.</span>mean(jnp<span style="color:#f92672">.</span>array(losses)[max(i <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">0</span>):i])))
+</span></span></code></pre></div><pre><code>    Step: 100: Avg. loss (last 100): 2.4251
+    Step: 200: Avg. loss (last 100): 2.6208
+    Step: 300: Avg. loss (last 100): 2.2898
+    Step: 400: Avg. loss (last 100): 1.7616
+    Step: 500: Avg. loss (last 100): 1.6727
+    Step: 600: Avg. loss (last 100): 1.0890
+    Step: 700: Avg. loss (last 100): 1.1949
+    Step: 800: Avg. loss (last 100): 0.9610
+    Step: 900: Avg. loss (last 100): 0.6888
+</code></pre>
+<p> </p>
+<h3 id="references">References</h3>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Dohare, S., Sutton, R. S., &amp; Mahmood, A. R. (2021). Continual backprop: Stochastic gradient descent with persistent randomness. arXiv preprint arXiv:2108.06325.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>

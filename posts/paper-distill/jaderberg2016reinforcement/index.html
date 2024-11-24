@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>Reinforcement learning with unsupervised auxiliary tasks</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">Reinforcement learning with unsupervised auxiliary tasks</h3>
+            
+            <small class="text-muted">Published July 23, 2023</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Title</strong>:</td>
+          <td style="text-align: left">Reinforcement learning with unsupervised auxiliary tasks</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Authors</strong>:</td>
+          <td style="text-align: left">Max Jaderberg, Volodymyr Mnih, Wojciech Marian Czarnecki, Tom Schaul, Joel Z Leibo, David Silver, Koray Kavukcuoglu</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Link</strong>:</td>
+          <td style="text-align: left"><a href="https://arxiv.org/pdf/1611.05397.pdf">https://arxiv.org/pdf/1611.05397.pdf</a></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="what">What</h4>
+<hr>
+<p>The paper examines the concept of maximizing &ldquo;pseudo-rewards&rdquo;, in addition to the main reward, derived from different environment signals. The objective is to improve certain parts of the agents&rsquo; feature representation. This, in turn, will help the main policy to reward states more effectively.</p>
+<h4 id="why">Why</h4>
+<hr>
+<p>To maximize cumulative reward in an environment the agent must construct sufficiently rich feature representation of the states that bring reward. This can be time-consuming when the reward is hardly available in many states or is zero. To tackle this issue, they suggest the agent takes on additional tasks to master, in addition to maximizing the total reward.</p>
+<h4 id="how">How</h4>
+<hr>
+<blockquote>
+<p><strong>TL;DR</strong>: Learn to control an environment with sparse rewards by developing a rich feature representation derived from signals beyond than the main reward. To accomplish this, several auxiliary tasks are proposed with the aim of refining the feature representation. The promise is that solving these auxiliary tasks will ultimately enable more effective learning of the main policy when the reward becomes available.</p>
+</blockquote>
+<p>These auxiliary tasks are defined by pseudo-reward functions. The goal is to maximize the pseudo-rewards and main reward simultaneously.</p>
+<p>$$
+\begin{equation}
+\argmax_{\bm{\theta}} \mathbb{E}_{\pi(\bm{\theta})} [ R_{1:\infty} ] + \lambda_c \sum_{c \in \mathcal{C}} \mathop{\mathbb{E}}_{\pi_c(\bm{\theta})} [R^{(c)}_{1:\infty}]
+\end{equation}
+$$</p>
+<p>$ R^{(c)}_{t:t+n} \stackrel{.}{=} \sum_k^n \gamma^k r^{(c)}_t $: discounted return for auxiliary reward $r^{(c)}$.</p>
+<p>$\bm{\theta}$: weight vector for $\pi$ and all $\pi^{(c)}$&rsquo;s.</p>
+<p>The objective in Eq. 1 is optimized via an off-policy <em>n-step Q-learning loss</em><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. The decision was made on purpose to compute pseudo-rewards in parallel using only one stream of experience, but it is not necessary.</p>
+<p>$$
+\mathcal{L}^{(c)}_Q \stackrel{.}{=} \mathop{\mathbb{E}}[(R^{(c)}_{t:t+n} + \gamma^n \max_{a^\prime} Q^{(c)}(s^\prime, a^\prime, \bm{\theta}^{-}) - Q^{(c)}(s, a, \bm{\theta}))^2]
+$$</p>
+<p>$\bm{\theta}^{-}$: are target parameters that are fixed and not optimized. They are used to compute the actual targets for optimizing $\bm{\theta}$ at some iteration $i$. Target parameters are updated (by copying $\bm{\theta}$) at a slower frequency than $\bm{\theta}$ <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<p> </p>
+<p>The authors examine two kinds of tasks: <em>control</em> auxiliary tasks and <em>prediction</em> auxiliary tasks.</p>
+<h5 id="control-tasks">Control tasks</h5>
+<p>For control tasks, they suggest using <em>pixel control</em> and <em>feature control</em>. Both of these control tasks are additional policies aimed at accumulating a pseudo-reward maximally. The two auxiliary policies share the network parameters (LSTM and ConvNet) with the main policy $\pi$.</p>
+<dl>
+<dt>Pixel control (PC)</dt>
+<dd>Pseudo-reward is defined as the absolute difference between the pixel changes of two consecutive frames. - Concretely, they divide the center crop of an input image from the environment into a grid of blocks of 4x4 non-overlapping pixels. For each pixel in the block the pseudo-reward is the absolute difference between the block average of two consecutive frames.</dd>
+<dt>Feature control (FC)</dt>
+<dd>In feature control, the agent learns to maximally control the activation of certain hidden units in the neural network. - Specifically, the agent learned to control the activations of the second hidden layer in the convolutational visual stream of the ConvNet. In principle, the agent can control other parts of the network activations as well.</dd>
+</dl>
+<h5 id="prediction-tasks">Prediction tasks</h5>
+<p>For the prediction auxiliary tasks, value functions are estimated to improve the feature representation of the agent.</p>
+<dl>
+<dt>Reward prediction (RP)</dt>
+<dd>Concretely, given a sequence of observations, the goal is to predict the reward in the next frame. - This task affects only the feature representation of the ConvNet, no value function is computed to estimate the return. - A multi-class cross-entropy with three classes (zero, positive, or negative reward) is used. The sequence of frames are sampled in a skewed manner to over-represent the frames with positive rewards which are fewer in sparse environments. - The LSTM is not affected by this task, rather a fully-connected layer is supposed to predict the immediate reward. The rationale was that an LSTM would have focused too much on predicting long-term return from distant states in the experience history.</dd>
+<dt>Value function replay (VR)</dt>
+<dd>Resample a random past experiences sequence from the experience replay buffer using the behavior policy and performing value function regression across all timesteps in the sequence between the state value estimate and the actual reward received.</dd>
+</dl>
+<p> </p>
+<h5 id="unreal-agent">UNREAL Agent</h5>
+<p>The UNREAL agent was trained using an A3C (asynchronous advantage actor-critic) framework. The designer has the flexibility to choose the RL algorithm and function approximator for each type of tasks. For instance, in the authors&rsquo; experiments, each control task was learned with off-policy n-step Q-learning using a LSTM, while solving the reward prediction auxiliary task involved a feed-forward neural network. A CNN performed the encoding of the observation frames, and its parameters were shared across all tasks.</p>
+<p>$$
+\begin{align}
+\mathcal{L}(\bm{\theta}) &amp;\stackrel{.}{=} \mathcal{L}_{\text{A3C}} + \lambda_\text{VR} \mathcal{L}_{\text{VR}} + \lambda_\text{PC} \sum_{c \in \mathcal{C}}^{} \mathcal{L}_{\text{Q}}^{(c)} + \lambda_{\text{RP}}\mathcal{L}_{\text{RP}} \\
+\mathcal{L}_{\text{VR}} &amp;\stackrel{.}{=} \mathop{\mathbb{E}}_{s \sim \pi}[ (R_{t:t+n} + \gamma^n V(s_{t+n+1}, \bm{\theta}^{-}) - V(s_t, \bm{\theta}))^2 ] \\
+\mathcal{L}_{\text{A3C}} &amp;\stackrel{.}{=} \mathcal{L}_{\text{VR}} + \mathcal{L}_{\pi} - \mathop{\mathbb{E}}_{s \sim \pi}[\alpha \underbrace{H(\pi(s, \cdot, \bm{\theta}))}_{\text{policy entropy regularization}}]
+\end{align}
+$$</p>
+<h4 id="thoughts">Thoughts</h4>
+<hr>
+<ul>
+<li>In the Labyrinth experiments, A3C+PC was superior to A3C+RP. It would be interesting to find out when reward prediction from other signals is better. For this, using a recurrent network like an LSTM would be beneficial that takes into account the entire history of experience and predicts rewards with a long-term view.</li>
+<li>In these experiments, the auxiliary tasks were carefully chosen with some knowledge of the environment and sensory inputs available to the agent. How to let the agent <em>discover</em> auxiliary tasks is a prospective open research question.</li>
+</ul>
+<p> </p>
+<h4 id="references">References</h4>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Mnih, V., Badia, A. P., Mirza, M., Graves, A., Lillicrap, T., Harley, T., &hellip; &amp; Kavukcuoglu, K. (2016, June). Asynchronous methods for deep reinforcement learning. In International conference on machine learning (pp. 1928-1937). PMLR.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J., Bellemare, M. G., &hellip; &amp; Hassabis, D. (2015). Human-level control through deep reinforcement learning. nature, 518(7540), 529-533.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>

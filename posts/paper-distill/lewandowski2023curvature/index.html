@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>Curvature explains loss of plasticity</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">Curvature explains loss of plasticity</h3>
+            
+            <small class="text-muted">Published March 29, 2024</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Title</strong>:</td>
+          <td style="text-align: left">Curvature explains loss of plasticity</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Authors</strong>:</td>
+          <td style="text-align: left">Alex Lewandowski, Haruto Tanaka, Dale Schuurmans, Marlos C. Machado</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Link</strong>:</td>
+          <td style="text-align: left"><a href="https://arxiv.org/pdf/2312.00246.pdf">https://arxiv.org/pdf/2312.00246.pdf</a></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="what">What</h4>
+<hr>
+<ul>
+<li>This paper presents empirical evidence that neural networks lose curvature directions during training in a continual learning setting, resulting in a loss of plasticity in learning. The loss of curvature (defined in the <a href="#measuring-curvature-to-establish-an-empirical-relationship-to-plasticity">Sec. below</a>) is measured by the empirical effective rank of an approximation to the Hessian of the parameters.</li>
+<li>This study also provides simple counter-examples to demonstrate that previous explanations of loss of plasticity are inconsistent with the situations in which such a loss should occur.</li>
+<li>Finally, the authors developed a simple regularizer that maintains the parameters distribution close to the initialization distribution, while also ensuring that the curvature is not significantly reduced.</li>
+</ul>
+<h4 id="why">Why</h4>
+<hr>
+<ul>
+<li>To achieve the ambitious goal of AI, we need to develop agents that can learn <em>continually</em> and adapt to changes in data distribution without external intervention.</li>
+<li>Whilst there are many existing explanations drawn empirically of why loss of plasticity occurs in neural networks it is not clear what the root cause is.</li>
+</ul>
+<h4 id="how">How</h4>
+<hr>
+<blockquote>
+<p><strong>TL;DR</strong>: The text describes an empirical relationship between the loss of curvature and the loss of plasticity. This relationship is more consistent with different situations than existing explanations. A simple regularizer is developed based on this curvature-plasticity relationship. It preserves the curvature of the Hessian matrix of parameters by penalizing the distribution of parameters if it lies too far away from the distribution of the parameters at initialization. This regularizer allows for a more generous departure from the initialization distribution compared to existing regularization methods, such as weight decay.</p>
+</blockquote>
+<h4 id="the-continual-learning-setting">The continual learning setting</h4>
+<ul>
+<li>Learning algorithm operates on <em>mini-batch</em> of data of size $M$.</li>
+<li>At fixed periodic times after $U$ successive updates, the distribution generating the observations and targets is changed (task).
+<ul>
+<li>A task <em>does not</em> change in difficulty.</li>
+</ul>
+</li>
+<li>The error measured at the end of each task $K$ and averaged across all observations in that task:</li>
+</ul>
+<p>$$
+J(\theta_{nU, K}) \stackrel{.}{=} \mathbb{E}_{p_K}[ l(f_{\theta_{nU, K}}(x), y) ]
+$$</p>
+<p>where $p_K$ is the generating distribution of inputs and targets for task $K$, $l(\cdot)$ some loss (e.g., classification loss), and $\theta_{nU, K}$ the parameters at the end of task $K$ after $n U$ updates in total so far.</p>
+<h4 id="measuring-curvature-to-establish-an-empirical-relationship-to-plasticity">Measuring curvature to establish an empirical relationship to plasticity</h4>
+<ul>
+<li>The <strong>definition of curvature</strong> of the optimization objective used in this paper is equal to the <em>effective</em> rank of the <em>Hessian</em> matrix of the parameters $\theta$ of the neural network <em>and</em> the training data $\mathcal{D}$.
+<ul>
+<li>The Hessian is the gradient of the loss derivative with respect to $\theta$ and it is a function of the training data too.</li>
+<li>The <strong>effective rank</strong> of a matrix indicates the number of basis vectors that can represent 99% of the training data $\mathcal{D}$, ordered by decreasing singular values.
+<ul>
+<li>The lower the effective rank, the fewer basis vectors can represent most of the data.</li>
+<li>
+<blockquote>
+<p>Important to note that the effective rank can change <em>without</em> the parameters $\theta$ changing, but with the distribution of the training data (when the task in a continual learning setting is varied).</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The computation of the actual Hessian is not done here because of high computational overhead being a function of the number of weights of a neural network!</li>
+<li>Instead the authors approximate it like so:</li>
+</ul>
+<p>$$
+\mathbf{H} \approx \mathbf{\hat{H}} \stackrel{.}{=} \sum_{i=1}^{M} g_i g_i^{\top} = \mathbf{G} \mathbf{G}^{\top}
+$$</p>
+<p>where $g \stackrel{.}{=}\nabla_{\theta} J(\theta, x_i, y_i)$, $\mathbf{G} \in \mathcal{R}^{d \times M}$, and $M \ll d$.</p>
+<ul>
+<li>
+<p>As $\mathbf{\hat{H}}$ is a Gram matrix, it is computationally advantageous to calculate the effective rank of $\mathbf{H}$ by computing $\mathbf{G}^{\top} \mathbf{G} \in \mathcal{R}^{M \times M}$ instead of $\mathbf{G} \mathbf{G}^{\top} \in \mathcal{R}^{d \times d}$, since $\text{rank}(\mathbf{G} \mathbf{G}^{\top}) = \text{rank}(\mathbf{G}^{\top} \mathbf{G})$.</p>
+</li>
+<li>
+<p>This definition of curvature was used on a suite of tests to show that in comparison with previous explanations of loss of plasticity, loss of curvature leading to loss of plasticity is consistent.</p>
+</li>
+<li>
+<p>For the other explanations, the authors could find simple counter-examples elucidating that they were in conflict at times and could not explain loss of plasticity on their own.</p>
+</li>
+</ul>
+<h4 id="curvature-is-preserved-by-regularizing-the-layerwise-l_2-difference-of-the-parameters-at-time-t-and-parameters-at-initialization-time-t_0">Curvature is preserved by regularizing the layerwise $L_2$-difference of the parameters at time $t$ and parameters at initialization time $t_0$</h4>
+<p>$$
+\mathcal{W}_2^2(p^{(l, 0)}, p^{(l, t)}) = \sum_{i=1}^{d} \Big( \bar{\theta}^{(l, t)}_{(i)} - \bar{\theta}^{(l, 0)}_{(i)} \Big)^2
+$$</p>
+<p>where $\bar{\theta}^{(l, t)}_{(i)}$ is the flattened matrix of parameters in layer $l$ at time $t$ indexing the individual parameters by $i$.</p>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>
