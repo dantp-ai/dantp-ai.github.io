@@ -2,36 +2,3 @@ User-agent: *
 {{ range .Pages }}
 Disallow: {{ .RelPermalink }}
 {{ end }}
-
-User-agent: *
-Disallow: /
-Crawl-delay: 1
-
-User-agent: ia_archiver
-Disallow: /
-
-User-agent: archive.org_bot
-Disallow: /
-
-User-agent: archive-it
-Disallow: /
-
-User-agent: Googlebot
-Disallow: /
-
-User-agent: bingbot
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: Semrushbot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-Noindex: /
