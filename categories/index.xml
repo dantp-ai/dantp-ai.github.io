@@ -7,13 +7,20 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2022-2024</copyright>
-    <lastBuildDate>Fri, 29 Mar 2024 15:37:21 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 28 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dantp-ai.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Research-Notes</title>
-      <link>https://dantp-ai.github.io/categories/research-notes/</link>
+      <title>Large Language Models</title>
+      <link>https://dantp-ai.github.io/categories/large-language-models/</link>
+      <pubDate>Thu, 28 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://dantp-ai.github.io/categories/large-language-models/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reinforcement-Learning</title>
+      <link>https://dantp-ai.github.io/categories/reinforcement-learning/</link>
       <pubDate>Fri, 29 Mar 2024 15:37:21 +0100</pubDate>
-      <guid>https://dantp-ai.github.io/categories/research-notes/</guid>
+      <guid>https://dantp-ai.github.io/categories/reinforcement-learning/</guid>
       <description></description>
     </item>
     <item>

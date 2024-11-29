@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>Quick introduction to RLHF for fine-tuning LLMs to better match human preferences</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">Quick introduction to RLHF for fine-tuning LLMs to better match human preferences</h3>
+            
+            <small class="text-muted">Published November 28, 2024</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<h4 id="what">What</h4>
+<hr>
+<ul>
+<li>
+<p>Reinforcement learning from human feedback (RLHF) is a fine-tuning technique <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> to align LLM outputs to human preferences.</p>
+</li>
+<li>
+<p>RLHF consists of four main steps <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>:</p>
+<ol>
+<li>LLM pre-training $\rightarrow$ Base model</li>
+<li>Supervised fine-tuning (SFT) $\rightarrow$ Instruct-tuned model (IM)</li>
+<li>Reward model training $\rightarrow$ Reward model (RM)</li>
+<li>LLM policy optimization $\rightarrow$ Policy model (PM)</li>
+</ol>
+<ul>
+<li>Steps 2-3 can be iterated continuously by using the current best policy model to get a better instruct-tuned model, which is used to get a better reward model, which is used to improve the policy model, and so on.</li>
+</ul>
+</li>
+</ul>
+<h4 id="why">Why</h4>
+<hr>
+<ul>
+<li>RLHF has been useful in reducing responses related to toxicity, bias, and harmfulness by using the preference signal of a well-intentioned and unbiased human feedback <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</li>
+</ul>
+<h4 id="how">How</h4>
+<hr>
+<ul>
+<li>
+<p>To explain how it works, let&rsquo;s go through each step in more detail, noting he input, output, model, and data used at each step.</p>
+</li>
+<li>
+<p><strong>LLM pre-training</strong>: Typically, we take an existing LLM that has been trained on a large corpus of Internet-scale data to predict the next token given an input token sequence.</p>
+</li>
+<li>
+<p><strong>Supervised fine-tuning</strong>: We fine-tune the base LLM model on prompt-answer pairs using standard supervised-learning.</p>
+</li>
+<li>
+<p><strong>RM training</strong>: The outcome of this step is a model that takes in a sequence of prompt and answer tokens concatenated, and outputs a scalar reward.</p>
+<ul>
+<li>The starting model is the LLM from the previous step of SFT, with the last vocabulary embedding layer removed and replaced with a linear layer for predicting the reward <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</li>
+<li>The dataset is a set of tuples containing: prompt, preferred answer, rejected answer, reward for preferred answer, reward for rejected answer <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.
+<ul>
+<li>The model is trained to give a high positive reward to the preferred answer and give a low negative reward to the rejected answer (by the human labeler).</li>
+<li>The loss is at high level:
+$$ -\log \sigma(\text{model}(\text{prompt}, \text{answer}_{\text{prefer}}), \text{model}(\text{prompt}, \text{answer}_{\text{reject}})) $$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>LLM Policy optimization</strong>: In this step, the actual LLM is fine-tuned using RL.</p>
+<ul>
+<li>Specifically, the problem of predicting the next token given a sequence of input tokens (prompt) is cast as an RL problem as follows:
+<ul>
+<li>Agent: LLM model from step 2</li>
+<li>State: Current prompt plus previously predicted answer tokens
+<ul>
+<li>For example this is a trajectory experienced by the LLM-agent:
+<ul>
+<li>s0: current prompt</li>
+<li>a0: next token predicted by LLM</li>
+<li>s1 = (s0, a0)</li>
+<li>a1 = next token predicted by LLM</li>
+<li>s2 = (s1, a1)</li>
+<li>&hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Action: next token from vocabulary</li>
+<li>Reward: scalar reward from RM</li>
+<li>Environment: provides the initial user-prompt plus the iteratively predicted answer tokens at each step</li>
+</ul>
+</li>
+<li>Policy takes in the state (user-prompt and generated answer tokens so far) and produces the next token in the sequence.
+<ul>
+<li>It&rsquo;s trained using the PPO algorithm <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>:
+<ul>
+<li>Samples a set of trajectories (given the user prompt) and generates different answers (using the temperature hyper-parameter of the LLM).</li>
+<li>The initial policy is frozen and used as a reference to compute the KL-divergence between it and the optimizing policy.
+<ul>
+<li>This is done to avoid reward hacking where the LLM might return useless answers just to maximize the expected reward (i.e., human preference).</li>
+</ul>
+</li>
+<li>The value function that estimates the expected reward given a token sequence is computed by adding a separate head to the LLM policy to make this prediction.
+<ul>
+<li>This value function is used to compute the advantage function in PPO <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="references">References</h4>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>To the best of my knowledge, RLHF hasn&rsquo;t been used in practice for end-to-end training of a LLM from scratch.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., &hellip; &amp; Lowe, R. (2022). Training language models to follow instructions with human feedback. Advances in neural information processing systems, 35, 27730-27744.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>I suppose one could train a LLM without RLHF to avoid these drawbacks by assembling an extremely well curated and constrained dataset so that it is very unlikely to generate such ill-intentioned responses.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>The reward model can also be a completely different model than the current LLM, as long as it respects the input/output API.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>There can be more than two answers generated by the LLM for the same input prompt, compared for human preference. For simplicity, I have only mentioned two here.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p><a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html#quick-facts">https://spinningup.openai.com/en/latest/algorithms/ppo.html#quick-facts</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7">
+<p><a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html#id6">https://spinningup.openai.com/en/latest/algorithms/ppo.html#id6</a>&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>
