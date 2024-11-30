@@ -144,10 +144,10 @@
 <hr>
 <ul>
 <li>
-<p>Reinforcement learning from human feedback (RLHF) is a fine-tuning technique <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> to align LLM outputs to human preferences.</p>
+<p>Reinforcement learning from human feedback (RLHF) is a fine-tuning technique <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> to align LLM outputs to human preferences <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
 </li>
 <li>
-<p>RLHF consists of four main steps <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>:</p>
+<p>RLHF consists of four main steps <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>:</p>
 <ol>
 <li>LLM pre-training $\rightarrow$ Base model</li>
 <li>Supervised fine-tuning (SFT) $\rightarrow$ Instruct-tuned model (IM)</li>
@@ -162,7 +162,7 @@
 <h4 id="why">Why</h4>
 <hr>
 <ul>
-<li>RLHF has been useful in reducing responses related to toxicity, bias, and harmfulness by using the preference signal of a well-intentioned and unbiased human feedback <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</li>
+<li>RLHF has been useful in reducing responses related to toxicity, bias, and harmfulness by using the preference signal of a well-intentioned and unbiased human feedback <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</li>
 </ul>
 <h4 id="how">How</h4>
 <hr>
@@ -179,8 +179,8 @@
 <li>
 <p><strong>RM training</strong>: The outcome of this step is a model that takes in a sequence of prompt and answer tokens concatenated, and outputs a scalar reward.</p>
 <ul>
-<li>The starting model is the LLM from the previous step of SFT, with the last vocabulary embedding layer removed and replaced with a linear layer for predicting the reward <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</li>
-<li>The dataset is a set of tuples containing: prompt, preferred answer, rejected answer, reward for preferred answer, reward for rejected answer <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.
+<li>The starting model is the LLM from the previous step of SFT, with the last vocabulary embedding layer removed and replaced with a linear layer for predicting the reward <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.</li>
+<li>The dataset is a set of tuples containing: prompt, preferred answer, rejected answer, reward for preferred answer, reward for rejected answer <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>.
 <ul>
 <li>The model is trained to give a high positive reward to the preferred answer and give a low negative reward to the rejected answer (by the human labeler).</li>
 <li>The loss is at high level:
@@ -216,7 +216,7 @@ $$ -\log \sigma(\text{model}(\text{prompt}, \text{answer}_{\text{prefer}}), \tex
 </li>
 <li>Policy takes in the state (user-prompt and generated answer tokens so far) and produces the next token in the sequence.
 <ul>
-<li>It&rsquo;s trained using the PPO algorithm <sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>:
+<li>It&rsquo;s trained using the PPO algorithm <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>:
 <ul>
 <li>Samples a set of trajectories (given the user prompt) and generates different answers (using the temperature hyper-parameter of the LLM).</li>
 <li>The initial policy is frozen and used as a reference to compute the KL-divergence between it and the optimizing policy.
@@ -226,7 +226,7 @@ $$ -\log \sigma(\text{model}(\text{prompt}, \text{answer}_{\text{prefer}}), \tex
 </li>
 <li>The value function that estimates the expected reward given a token sequence is computed by adding a separate head to the LLM policy to make this prediction.
 <ul>
-<li>This value function is used to compute the advantage function in PPO <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>.</li>
+<li>This value function is used to compute the advantage function in PPO <sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>.</li>
 </ul>
 </li>
 </ul>
@@ -236,7 +236,7 @@ $$ -\log \sigma(\text{model}(\text{prompt}, \text{answer}_{\text{prefer}}), \tex
 </ul>
 </li>
 </ul>
-<h4 id="references">References</h4>
+<h4 id="footnotes">Footnotes</h4>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -244,22 +244,25 @@ $$ -\log \sigma(\text{model}(\text{prompt}, \text{answer}_{\text{prefer}}), \tex
 <p>To the best of my knowledge, RLHF hasn&rsquo;t been used in practice for end-to-end training of a LLM from scratch.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
-<p>Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., &hellip; &amp; Lowe, R. (2022). Training language models to follow instructions with human feedback. Advances in neural information processing systems, 35, 27730-27744.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>RLHF has also been used to match human preferences for similarity and diversity in images (cf. <a href="https://arxiv.org/pdf/2310.12103">Ding, L., Zhang, J., Clune, J., Spector, L., &amp; Lehman, J. (2023). Quality diversity through human feedback. arXiv preprint arXiv:2310.12103.</a>).&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3">
-<p>I suppose one could train a LLM without RLHF to avoid these drawbacks by assembling an extremely well curated and constrained dataset so that it is very unlikely to generate such ill-intentioned responses.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., &hellip; &amp; Lowe, R. (2022). Training language models to follow instructions with human feedback. Advances in neural information processing systems, 35, 27730-27744.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4">
-<p>The reward model can also be a completely different model than the current LLM, as long as it respects the input/output API.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>I suppose one could train a LLM without RLHF to avoid these drawbacks by assembling an extremely well curated and constrained dataset so that it is very unlikely to generate such ill-intentioned responses.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5">
-<p>There can be more than two answers generated by the LLM for the same input prompt, compared for human preference. For simplicity, I have only mentioned two here.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>The reward model can also be a completely different model than the current LLM, as long as it respects the input/output API.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6">
-<p><a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html#quick-facts">https://spinningup.openai.com/en/latest/algorithms/ppo.html#quick-facts</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>There can be more than two answers generated by the LLM for the same input prompt, compared for human preference. For simplicity, I have only mentioned two here.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7">
-<p><a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html#id6">https://spinningup.openai.com/en/latest/algorithms/ppo.html#id6</a>&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html#quick-facts">https://spinningup.openai.com/en/latest/algorithms/ppo.html#quick-facts</a>&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8">
+<p><a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html#id6">https://spinningup.openai.com/en/latest/algorithms/ppo.html#id6</a>&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
