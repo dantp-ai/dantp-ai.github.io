@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>CLIP (Contrastive Language-Image Pre-Training)</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">CLIP (Contrastive Language-Image Pre-Training)</h3>
+            
+            <small class="text-muted">Published April 14, 2023</small>
+        </div>
+
+        <article>
+            <p><em><ins>Any errors or misinterpretations presented here are solely my own and do not reflect the views of the original authors.</ins></em></p>
+<br>
+<h4 id="what">What</h4>
+<hr>
+<p><strong>TL;DR</strong>: The <em>CLIP (Contrastive Language-Image Pre-Training)</em> algorithm is trained on a large set of image-text pairs and can then be used as a zero-shot (i.e., no fine-tuning) model for various tasks (e.g., image classification, object detection (with prompting) given region proposals, image retrieval).</p>
+<h4 id="how">How</h4>
+<hr>
+<p><strong>Contrastive Training</strong></p>
+<ul>
+<li>
+<p>CLIP is trained on batches of image-text pairs using a contrastive loss similar to loss in <a href="https://arxiv.org/abs/2010.00747">ConVIRT</a><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> (cf. Eq. 2-4).</p>
+</li>
+<li>
+<p>Specifically, for $N$ image-text pairs, the corresponding $d$-dimensional image and text embeddings are computed (using standard image and text encoders<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>), resulting in $N^2$ image-text embedding pairs from which we compute the element-wise cosine similarity. To compute the final loss for a pair, we consider the $i$-th row and $j$-th column in $N^2$ (corresponding to the $i$-th image and $j$-th text in the batch):</p>
+<ul>
+<li>
+<p>We compute the cross-entropy loss across row $i$ and the cross-entropy loss across column $j$ and then do a linear interpolation between the two loss values.</p>
+</li>
+<li>
+<p>The network learns a joint embedding space of similar image-text pairs and disimilar pairs. So, a large batch-size is recommended to capture the disimilarity between the other pairs (that we know are not matching in the batch).</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Inference on unseen datasets and tasks (Zero-shot learning<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>)</strong></p>
+<ul>
+<li>
+<p>Once trained, the CLIP model can be used for new datasets and tasks. For example, it can be used for image captioning, where captions for images are generated by ranking pre-defined captions based on the image-caption similarity.</p>
+</li>
+<li>
+<p>The standard example is image classification. We have a prompt and a list of categories. We also have images to classify. We compute the cosine similarity between images and categories and retrieve the highest values.</p>
+</li>
+</ul>
+<h4 id="references--footnotes">References &amp; Footnotes</h4>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Zhang, Y., Jiang, H., Miura, Y., Manning, C. D., &amp; Langlotz, C. P. (2022, December). Contrastive learning of medical visual representations from paired images and text. In Machine Learning for Healthcare Conference (pp. 2-25). PMLR.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>For image embedding, we can use pretty much any vision model (such as ViT or ResNet-50), and for text embedding we can use a Transformer-based model.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., &hellip; &amp; Sutskever, I. (2021, July). Learning transferable visual models from natural language supervision. In International conference on machine learning (pp. 8748-8763). PMLR.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>
