@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>Language-vision models: recent developments</title>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        Dan
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    AI Engineer
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white active" href="../../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+        </script>
+</head>
+<body>
+</body>
+</html>
+
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">Language-vision models: recent developments</h3>
+            
+            <small class="text-muted">Published December 2, 2024</small>
+        </div>
+
+        <article>
+            <h3 id="table-of-contents">Table of Contents</h3>
+<ul>
+<li><a href="#qwen-vl-2023">Qwen-VL (2023)</a><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li><a href="#cm3leon-2024">CM3Leon (2024)</a><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+<li><a href="#cogvlm-2023">CogVLM (2023)</a><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
+<li><a href="#dolphins-2023">Dolphins (2023)</a><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></li>
+<li><a href="#references--footnotes">References &amp; Footnotes</a></li>
+</ul>
+<p>In a recent paper titled <a href="https://arxiv.org/pdf/2405.17927">The Evolution of Multimodal Model Architectures</a><sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>, the authors present a taxonomy of multimodal vision-language models, categorized by the fusion stage (early or deep) and the fusion methods, including standard cross-attention layers, custom cross-attention layers, specialized tokenizers, or modality-specific encoders. Below, I provide a brief overview of the taxonomy groups, developed by the authors<sup id="fnref1:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>, and examples of models within each category.</p>
+<h4 id="deep-fusion">Deep Fusion</h4>
+<h5 id="type-a-multimodal-inputs-are-directed-to-the-internal-llm-layers-using-cross-attention">Type-A (multimodal inputs are directed to the internal LLM layers using cross-attention)</h5>
+<p>In this architecture, the multimodal inputs (image/video/audio) are passed through a multimodal encoder, resampled to a fixed length (using a resampler), and then passed to the internal layers of the LLM using cross-attention.</p>
+<p>The fusion (via cross-attention) can be done before or after the self-attention layer in the LLM. This results in two possible sub-architectures, one that does the cross-attention fusion before the self-attention layer and one that does it after the self-attention layer.</p>
+<p>For one such model, see <a href="#dolphins-2023">Dolphins</a> below.</p>
+<h5 id="type-b-multimodal-input-are-directed-to-the-internal-llm-layers-using-custom-cross-attention-layers">Type-B (multimodal input are directed to the internal LLM layers using custom cross-attention layers)</h5>
+<p>The authors distinguish models that pass the multimodal input to the internal LLM layers via a custom cross-attention layer in Type-B architectures. They observe that deep fusion typically occurs via add/concatenation operations <em>after</em> the self-attention layers in the LLM.</p>
+<p>For one such model, see <a href="#cogvlm-2023">CogVLM</a> below.</p>
+<h4 id="early-fusion">Early Fusion</h4>
+<h5 id="type-c-multimodal-inputs-are-optionally-embedded-or-passed-as-is-to-the-llm">Type-C (multimodal inputs are optionally embedded or passed as-is to the LLM)</h5>
+<ul>
+<li>Use pre-trained LLM as decoder
+<ul>
+<li>Input: Encoder output + text</li>
+</ul>
+</li>
+<li>Encoder can also be pre-trained</li>
+<li>Incorporate off-the-shelf LLMs and encoders</li>
+<li>Training &amp; data:
+<ul>
+<li>Pre-train + alignment tuning: train projection layers (MLP etc) for vision+text alignment</li>
+<li>Instruction + alignment tuning: train projection layer + LLM</li>
+</ul>
+</li>
+<li>For one such model, see <a href="#qwen-vl-2023">Qwen-VL</a> below.</li>
+</ul>
+<h5 id="type-d-multimodal-inputs-are-tokenized-before-passed-to-the-llm">Type-D (multimodal inputs are tokenized before passed to the LLM)</h5>
+<ul>
+<li>One tokenizer for all modalities</li>
+<li>Disadvantages:
+<ul>
+<li>The addition of a <em>new</em> modality requires a re-training of the tokenizer (to learn how to tokenize the new modality).</li>
+<li>Training was observed to take longer than the other methods because the LLM (or encoder-decoder model) only considers the modality at the input stage (and receives no input guidance at intermediate deeper layers).</li>
+</ul>
+</li>
+<li>For one such model, see <a href="#cm3leon-2024">CM3Leon</a> below.</li>
+</ul>
+<h4 id="qwen-vl-2023">Qwen-VL (2023)</h4>
+<p>Paper: <a href="https://arxiv.org/pdf/2308.12966">https://arxiv.org/pdf/2308.12966</a></p>
+<h5 id="model-architecture">Model architecture</h5>
+<ul>
+<li><strong>Visual Encoder</strong> (e.g., a ViT)</li>
+<li><strong>Position-aware Vision-Language Adapter</strong>
+<ul>
+<li>A cross-attention layer with:
+<ul>
+<li>Inputs:
+<ul>
+<li>visual embedding sequence from the Visual Encoder, as keys</li>
+<li>trainable vector embeddings, as queries</li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>a compressed fixed-length visual embedding sequence (e.g., 256)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Large Language-Model</strong> (e.g., Qwen-7B)
+<ul>
+<li>Inputs:
+<ul>
+<li>compressed visual embedding sequence (surrounded by two special img tokens to distinguish it from the the text input) + text input sequence</li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>Predicted next text token</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="training">Training</h5>
+<p>Training is done in three phases:</p>
+<ol>
+<li><strong>Pre-training</strong> on low-resolution image and text pairs:
+<ul>
+<li>LLM is frozen. Only adapter and visual encoder are trained to minimize cross-entropy on LLM output text.</li>
+</ul>
+</li>
+<li><strong>Multi-task pre-training</strong> on high-res image and text pairs, and interleaved image-text data:
+<ul>
+<li>LLM, adapter, encoder are all trained.</li>
+</ul>
+</li>
+<li><strong>Fine-tuning</strong> on interleaved image-text data:
+<ul>
+<li>Encoder is frozen, only LLM and adapter are trained.</li>
+</ul>
+</li>
+</ol>
+<h4 id="cm3leon-2024">CM3Leon (2024)</h4>
+<p>Paper: <a href="https://arxiv.org/pdf/2405.09818">https://arxiv.org/pdf/2405.09818</a></p>
+<p><em>CM3Leon</em> (pronounced as &ldquo;chameleon&rdquo;) is a multimodal early fusion model pre-trained on a large dataset including pure text, text-image pairs, and interleaved text-image documents. It&rsquo;s pre-trained in two stages. In the first stage, which accounts for most of the training, the model is trained on ~2.9T text-only tokens, ~1.5T text-image tokens, and ~400B interleaved text-image tokens. The second stage contains a similar amount of data, but it&rsquo;s much smaller and of higher quality.</p>
+<p><strong>Tokenization</strong>:
+At the core of CM3Leon&rsquo;s architecture is a tokenizer module that can quantize both images and text into discrete tokens before applying the same transformer-based module to those tokens.
+Images (of size 512x512) are tokenized into a 1024 token representation (from a vocabulary of 8192 tokens). Then the image token representation and the text are tokenized using a BPE tokenizer trained on a vocabulary of ~65k tokens (including the 8192 image tokens).</p>
+<p><strong>Architecture</strong>:
+The authors propose new architectural changes to stabilize training. In particular, the normalization strategies in the attention blocks are QK-Norm (along with dropout <em>after</em> the attention and MLP blocks) for the 7B-parameter model, and in the case of the larger 34B-parameter model, the normalization from the Swin-transformer is used in the attention blocks.
+Also, to stabilize the final softmax over the logits, the authors use the z-loss regularisation softmax (see Sec. 3.1.2 in <a href="https://arxiv.org/pdf/2309.14322">2309.14322 v2</a><sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>).</p>
+<h4 id="cogvlm-2023">CogVLM (2023)</h4>
+<p>Paper: <a href="https://arxiv.org/pdf/2311.03079">https://arxiv.org/pdf/2311.03079</a></p>
+<h4 id="dolphins-2023">Dolphins (2023)</h4>
+<p>Paper: <a href="https://arxiv.org/pdf/2312.00438">https://arxiv.org/pdf/2312.00438</a></p>
+<h4 id="references--footnotes">References &amp; Footnotes</h4>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Bai, J., Bai, S., Yang, S., Wang, S., Tan, S., Wang, P., &hellip; &amp; Zhou, J. (2023). Qwen-vl: A versatile vision-language model for understanding, localization, text reading, and beyond. arXiv preprint arXiv:2308.12966, 1(2), 3.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Team, C. Chameleon: Mixed-modal early-fusion foundation models, 2024. URL https://arxiv. org/abs/2405.09818.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Wang, W., Lv, Q., Yu, W., Hong, W., Qi, J., Wang, Y., &hellip; &amp; Tang, J. (2023). Cogvlm: Visual expert for pretrained language models. arXiv preprint arXiv:2311.03079.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Ma, Y., Cao, Y., Sun, J., Pavone, M., &amp; Xiao, C. (2023). Dolphins: Multimodal language model for driving. arXiv preprint arXiv:2312.00438.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Wadekar, S. N., Chaurasia, A., Chadha, A., &amp; Culurciello, E. (2024). The Evolution of Multimodal Model Architectures. arXiv preprint arXiv:2405.17927.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>Wortsman, M., Liu, P. J., Xiao, L., Everett, K., Alemi, A., Adlam, B., &hellip; &amp; Kornblith, S. (2023). Small-scale proxies for large-scale transformer training instabilities. arXiv preprint arXiv:2309.14322.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        &copy; 2022-2024
+        <br>
+        Built with <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        based on <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+        theme from <a href="https://github.com/austingebauer/devise" target="_blank">A. Gebauer.</a>
+    </small>
+</footer>
+</body>
+</html>
