@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>therewardsignal</title>
+  <meta name="description" content="homepage" />
+
+  <script src="./theme.js"></script>
+  <link rel="stylesheet" href="./styles.css" />
+
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <div class="wordmark">
+    </div>
+    <div class="masthead-right">
+      <div class="masthead-meta">
+        <span id="status-dot" class="status-dot"></span>
+        <span id="status-text">booting predictor horde…</span>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.5 5.5 0 0 1-4.4 2.26 5.5 5.5 0 0 1-5.38-6.84A9 9 0 0 0 12 3z"/></svg>
+      </button>
+      <a class="nav-about" href="./about.html">About me →</a>
+    </div>
+  </header>
+
+  <main class="console">
+    <section class="intro">
+      <p class="overline">Real-time online temporal-difference learning · live, in your browser</p>
+      <h1 class="title">predicting <em>your</em> next click</h1>
+      <p class="lede">
+        Click anywhere in the grid, in any order; then settle into a rhythm &
+        repeat it. A small <em>horde</em> of <span class="term" tabindex="0">SwiftTD<span class="term-pop" role="tooltip"><strong>SwiftTD</strong> is a fast, robust algorithm for temporal-difference learning (Javed, Sharifnassab &amp; Sutton, 2024). It learns predictions online from a single stream of data — no replay buffer — by adapting a per-feature step size and bounding each update, so it learns quickly without diverging. <br><br>[1]  Javed, K., Sharifnassab, A., & Sutton, R. S. (2024). Swifttd: A fast and robust algorithm for temporal difference learning. In Reinforcement Learning Conference.</span></span> predictors, one per cell,
+        learns whatever routine emerges from a continuous online stream of clicks. The RL agent tries to predict where you'll click <em>next</em>.
+      </p>
+      <p class="tagline">Nothing is hand-coded. No replay buffers. Online. Real-time.</p>
+    </section>
+
+    <div class="rig">
+      <figure class="arena-wrap">
+        <canvas id="arena" class="arena"></canvas>
+        <figcaption class="arena-hint">
+          <span class="kbd">●</span> click anywhere · find a rhythm and repeat it
+        </figcaption>
+      </figure>
+
+      <aside class="rail">
+        <section class="module gauge-module">
+          <h2 class="module-title">Anticipation</h2>
+          <div class="gauge">
+            <svg viewBox="0 0 120 120" class="gauge-svg" aria-hidden="true">
+              <circle class="gauge-track" cx="60" cy="60" r="52" pathLength="100" />
+              <circle id="gauge-arc" class="gauge-arc" cx="60" cy="60" r="52" pathLength="100" />
+            </svg>
+            <div class="gauge-readout">
+              <span id="gauge-value" class="gauge-value">0.00</span>
+              <span class="gauge-unit">v(next)</span>
+            </div>
+          </div>
+          <p class="module-note">predicted intent of your next click</p>
+        </section>
+
+        <section class="module scope-module">
+          <h2 class="module-title">Value trace
+            <span class="legend">
+              <i class="swatch swatch-heat"></i>prediction
+              <i class="swatch swatch-spark"></i>reward
+            </span>
+          </h2>
+          <canvas id="scope" class="scope"></canvas>
+        </section>
+
+        <section class="module metrics-module">
+          <div class="metric metric-lead">
+            <span class="metric-label">Next-click accuracy</span>
+            <span id="m-accuracy" class="metric-value">—</span>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><span class="metric-label">Clicks</span><span id="m-clicks" class="metric-value">0</span></div>
+            <div class="metric"><span class="metric-label">Streak</span><span id="m-streak" class="metric-value">0</span></div>
+            <div class="metric"><span class="metric-label">Step-size</span><span id="m-rate" class="metric-value">0.000</span></div>
+          </div>
+        </section>
+
+        <details class="module settings-module">
+          <summary>
+            <span>Settings</span>
+            <span class="summary-icon">+</span>
+          </summary>
+          <div class="settings-body">
+            <label class="control">
+              <span class="control-label">Meta-step θ <code id="v-meta">1e-3</code></span>
+              <input id="s-meta" type="range" min="0" max="100" value="60" />
+            </label>
+            <label class="control">
+              <span class="control-label">Trace λ <code id="v-lambda">0.90</code></span>
+              <input id="s-lambda" type="range" min="0" max="99" value="90" />
+            </label>
+            <div class="control-row">
+              <button id="btn-heatmap" class="btn" type="button" aria-pressed="true">Heatmap</button>
+              <button id="btn-pause" class="btn" type="button" aria-pressed="false">Pause</button>
+              <button id="btn-reset" class="btn btn-warn" type="button">Relearn</button>
+            </div>
+          </div>
+        </details>
+      </aside>
+    </div>
+
+    <details class="explainer">
+      <summary class="explainer-title">
+        <span>What you're watching</span>
+        <span class="summary-icon">+</span>
+      </summary>
+      <div class="explainer-cols">
+        <p>
+          Each tick (~30&nbsp;Hz) the demo builds one sparse, binary feature
+          vector from your cursor — <strong>tile-coded position</strong> plus a
+          one-hot for the <strong>target you last clicked</strong> — and feeds it
+          to every predictor at once.
+        </p>
+        <p>
+          Each cell owns a <strong>General Value Function</strong>: a SwiftTD
+          learner whose reward is 1 only on the tick you click <em>it</em>. So its
+          value answers “how soon will I be clicked?” Every cell's value tinted
+          together is the <strong>intent field</strong>; the brightest cell
+          (excluding the one you just clicked) is the pre-lit next-click guess.
+        </p>
+        <p>
+          SwiftTD adapts a <strong>per-feature step size</strong> online and
+          bounds each update so it learns fast without diverging — which is why a
+          few repeats of your rhythm are enough for it to light up your next click
+          before you make it.
+        </p>
+      </div>
+    </details>
+  </main>
+
+  <footer class="colophon">
+    <span>SwiftTD · compiled to WebAssembly, learning on your device.</span>
+    <span>No cookies, no cross-site tracking.</span>
+  </footer>
+
+  <noscript class="noscript">This demo needs JavaScript and WebAssembly enabled.</noscript>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
